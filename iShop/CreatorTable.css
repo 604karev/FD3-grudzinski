@@ -1,0 +1,17 @@
+.elements {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.elements > .element > img {
+    width: 200px;
+    height: 200px;
+
+}
+
+.elements > .element {
+    padding: 20px;
+    margin: 20px 10px;
+    border: 1px solid #7f7f7f;
+}
