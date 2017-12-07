@@ -1,6 +1,20 @@
 var CreatorTable = React.createClass({
 
+    propTypes: {
+        items: React.PropTypes.arrayOf(
+            React.PropTypes.shape({
+                    id: React.PropTypes.number.isRequired,
+                    name: React.PropTypes.string.isRequired,
+                    price: React.PropTypes.string.isRequired,
+                    img: React.PropTypes.string.isRequired,
+                    quantity: React.PropTypes.number.isRequired
+                }
+            )
+        )
+    },
+
     render: function () {
+
 
         var elements = [];
 
