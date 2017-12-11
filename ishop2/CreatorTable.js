@@ -15,7 +15,7 @@ var CreatorTable = React.createClass({
     },
     getInitialState: function () {
         return {
-            itemsState: this.props.getShopItems,
+            itemsState: this.props.items,
 
 
         };
@@ -23,16 +23,15 @@ var CreatorTable = React.createClass({
 
     changeElementState: function (e) {
         this.setState({
-            itemsState: this.state.itemsState.forEach(
-                (data) => {
-                    console.log(data.isOpened);
+            itemsState: this.state.itemsState.map(
+                (data, index) => {
+                    // console.log(data);
                     /*return data.id === e.currentTarget.id ? !data.isOpened : data.isOpened*/
                     if (data.id === e.currentTarget.id) {
                         data.isOpened = true;
 
                     }
                     return data
-
 
                 }
             )

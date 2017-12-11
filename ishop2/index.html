@@ -45,15 +45,12 @@
             isOpened: false
         }
     ];
-     function getItems() {
-        return shopData
-        
-    }
+
+
 
     ReactDOM.render(
         React.createElement(CreatorTable, {
             items: shopData,
-            getShopItems: getItems(),
         }),
         document.getElementById('container')
     );
