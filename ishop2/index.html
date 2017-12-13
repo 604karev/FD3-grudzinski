@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>iShop</title>
+
 </head>
 <body>
 <div id="container"></div>
@@ -12,14 +13,15 @@
 
 <script src="CreatorTable.js"></script>
 <script src="CreatorElement.js"></script>
-<link rel="stylesheet" type="text/css" href="CreatorTable.css"/>
+<script src="CreatorEditedForm.js"></script>
+
 
 <script>
-    var washer = 'img/Washer.jpg';
-    var vacuum = 'img/vacuum.jpg';
-    var iron = 'img/iron.jpg';
+    const washer = 'img/Washer.jpg';
+    const vacuum = 'img/vacuum.jpg';
+    const iron = 'img/iron.jpg';
 
-    var shopData = [
+    const shopData = [
         {
             id: 1,
             name: 'Стиральная машина',
@@ -47,7 +49,6 @@
     ];
 
 
-
     ReactDOM.render(
         React.createElement(CreatorTable, {
             items: shopData,
@@ -56,6 +57,6 @@
     );
 
 </script>
-
+<link rel="stylesheet" type="text/css" href="CreatorTable.css"/>
 </body>
 </html>

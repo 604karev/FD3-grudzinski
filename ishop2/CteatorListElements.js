@@ -1,5 +1,0 @@
-var CreatorListElements = React.createClass({
-
-
-
-})
