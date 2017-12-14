@@ -8,7 +8,8 @@ const CreatorElement = React.createClass({
                 img: React.PropTypes.string.isRequired,
                 quantity: React.PropTypes.number.isRequired
             }
-        )
+        ),
+        pushingObject: React.PropTypes.func,
 
     },
 

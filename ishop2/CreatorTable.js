@@ -24,7 +24,7 @@ const CreatorTable = React.createClass({
         this.setState({
             itemsState: this.state.itemsState.map(
                 (data) => {
-                    console.log(data);
+                    // console.log(data);
                     (data.id).toString() === e.currentTarget.parentNode.id ? data.isOpened = !data.isOpened : null;
                     return data
                 }
@@ -34,9 +34,17 @@ const CreatorTable = React.createClass({
 
     },
     editElement: function (e) {
-        this.setState({editMode: !this.state.editMode});
-        this.state.editMode ? this.changeElementState(e) : this.changeElementState(e);
+
+        if (this.state.itemsState.map((data) => {
+                if ((data.id).toString() === e.currentTarget.parentNode.id) {
+                    return data.isOpened = true
+                }
+            })) {
+            this.setState({editMode: !this.state.editMode});
+        }
+
     },
+
     addElement: function (e) {
         this.setState({addingMode: !this.state.addingMode});
     },
@@ -53,10 +61,29 @@ const CreatorTable = React.createClass({
         })
     },
 
+    pushingObject: function (e) {
+        console.log(e.target.parentNode.querySelector('.formEditName'));
+        this.setState({
+            itemsState: this.state.itemsState.push(
+                {
+                    id: this.state.itemsState.length + 1,
+                    name: e.target.parentNode.querySelector('.formEditName').value,
+                    price: e.target.parentNode.querySelector('.formEditPrice').value,
+                    img: e.target.parentNode.querySelector('.formEditFile').value,
+                    quantity: Number(e.target.parentNode.querySelector('.formEditQuantity').value),
+                    isOpened: false,
+                }
+            )
+
+        });
+
+
+    },
+
 
     render: function () {
 
-        // console.log(this.state.itemsState);
+        console.log(this.state.itemsState);
 
         let elements = this.state.itemsState.map(
             (el) => {
@@ -120,7 +147,10 @@ const CreatorTable = React.createClass({
                 ? React.createElement(CreatorEditedForm, {edited: this.state.editMode})
                 : null,
             this.state.addingMode ?
-                React.createElement(CreatorEditedForm, null) : null,
+                React.createElement(CreatorEditedForm, {
+                    itemsState: this.state.itemsState,
+                    pushingObject: this.pushingObject,
+                }) : null,
             React.DOM.button({
                 className: 'newElement', onClick: (e) => {
                     this.addElement(e)
