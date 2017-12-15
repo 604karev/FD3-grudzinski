@@ -22,12 +22,12 @@ const FilterComponent = React.createClass({
         var self = this;
 
 
-        _.isEqual(self.state.dataState, this.props.data) ?
+        _.isEqual(self.state.dataState, self.props.data) ?
             self.setState({
                 dataState: self.state.dataState.sort()
             }) :
-            this.setState({
-                dataState: this.props.data
+            self.setState({
+                dataState: self.props.data
             })
 
 
