@@ -62,11 +62,12 @@ const CreatorTable = React.createClass({
     },
 
     pushingObject: function (e) {
+        let self = this;
         console.log(e.target.parentNode.querySelector('.formEditName'));
         this.setState({
-            itemsState: this.state.itemsState.push(
+            itemsState: self.state.itemsState.push(
                 {
-                    id: this.state.itemsState.length + 1,
+                    id: self.state.itemsState.length + 1,
                     name: e.target.parentNode.querySelector('.formEditName').value,
                     price: e.target.parentNode.querySelector('.formEditPrice').value,
                     img: e.target.parentNode.querySelector('.formEditFile').value,
@@ -82,10 +83,12 @@ const CreatorTable = React.createClass({
 
 
     render: function () {
+        let self = this;
+
 
         console.log(this.state.itemsState);
 
-        let elements = this.state.itemsState.map(
+        let elements = self.state.itemsState.map(
             (el) => {
                 if (el.isOpened) {
                     return (
@@ -99,10 +102,7 @@ const CreatorTable = React.createClass({
                                 }, el.name,
 
 
-                                React.createElement(CreatorElement, {
-                                        item: el
-                                    }
-                                )
+
                             ), React.DOM.button({
                                 className: 'remove', onClick: (e) => {
                                     return this.deleteElement(e)
@@ -113,6 +113,10 @@ const CreatorTable = React.createClass({
                                     return this.editElement(e)
                                 }
                             }, 'Редактировать'),
+                            React.createElement(CreatorElement, {
+                                    item: el
+                                }
+                            )
                         )
                     )
 
