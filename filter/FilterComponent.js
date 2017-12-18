@@ -2,7 +2,9 @@ const FilterComponent = React.createClass({
 
     getInitialState: function () {
         return {
-            dataState: this.props.data
+            dataState: this.props.data,
+            sortedState: this.props.data,
+            filteredState: this.props.data,
         };
     },
 
@@ -19,15 +21,17 @@ const FilterComponent = React.createClass({
     },
 
     sort: function () {
-        var self = this;
 
-
-        _.isEqual(self.state.dataState, self.props.data) ?
-            self.setState({
-                dataState: self.state.dataState.sort()
+        _.isEqual(this.state.dataState, this.props.data) ?
+            this.setState({
+                dataState: this.props.data.map(
+                    (data) => {
+                        return data
+                    }
+                ).sort()
             }) :
-            self.setState({
-                dataState: self.props.data
+            this.setState({
+                dataState: this.props.data
             })
 
 
@@ -35,7 +39,7 @@ const FilterComponent = React.createClass({
 
 
     render: function () {
-        var table = [];
+        let table = [];
 
         this.state.dataState.forEach((item, index) => {
             table.push(React.DOM.div({
@@ -44,7 +48,6 @@ const FilterComponent = React.createClass({
                 }, item)
             )
         });
-        console.log(this.state.dataState);
 
 
         return (
