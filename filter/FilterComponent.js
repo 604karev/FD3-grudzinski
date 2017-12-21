@@ -9,33 +9,34 @@ const FilterComponent = React.createClass({
     },
 
     searchNSort: function () {
-        if (this.state.inputState !== '') {
-            this.setState({
-                dataState: this.props.data.filter(
-                    (data) => {
-                        return (data).toLowerCase().indexOf(this.state.inputState) > -1
-                    }
-                )
-            })
 
-        } else {
-            this.setState({
-                dataState: this.props.data.map(
-                    (data) => {
-                        return data
-                    }
-                )
-            })
-        }
+        let resultArray = [];
+
+        if (this.state.inputState !== '') {
+            resultArray = this.props.data.filter(
+                (data) => {
+                    return (data).toLowerCase().indexOf(this.state.inputState) > -1
+                }
+            )
+
+        } else resultArray = this.props.data;
+
+
         if (this.state.sortedState) {
-            this.setState({
-                dataState: this.state.dataState.map(
-                    (data) => {
-                        return data
-                    }
-                ).sort()
-            })
+            resultArray = resultArray.map(
+                (data)=>{
+                    return data
+                }
+            ).sort()
         }
+
+        this.setState({
+            dataState: resultArray.map(
+                (data) => {
+                    return data
+                }
+            )
+        })
     },
 
 
@@ -62,7 +63,7 @@ const FilterComponent = React.createClass({
                         className: 'sort',
                         type: 'checkbox',
                         onChange: (e) => {
-                            this.setState({sortedState: !this.state.sortedState}, this.searchNSort)
+                            this.setState({sortedState: e.target.checked}, this.searchNSort)
 
                         }
                     })
