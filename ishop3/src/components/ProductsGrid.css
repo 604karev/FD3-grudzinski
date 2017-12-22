@@ -1,0 +1,7 @@
+.table {
+    max-width: 600px;
+    margin: auto;
+}
+.selected{
+    background-color: red;
+}

@@ -1,0 +1,9 @@
+.element {
+    padding: 10px;
+    text-align: left;
+}
+
+.rowWrapper {
+    border: 1px solid black;
+    margin: 10px;
+}
