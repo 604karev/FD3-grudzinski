@@ -18,18 +18,19 @@ class ProductRow extends Component {
 
     };
 
-    select = () => {
+    select = (e) => {
         activeBlock.emit('eventActiveBlock', this.props.item.id);
         console.log(activeBlock)
 
     };
 
 
+
     render() {
         return (
 
             <div className='element'
-                 onClick={() => this.select}>{this.props.item.name}</div>
+                 onClick={this.select}>{this.props.item.name}</div>
 
         )
 

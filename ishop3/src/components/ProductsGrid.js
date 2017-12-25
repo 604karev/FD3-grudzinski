@@ -25,9 +25,7 @@ class ProductsGrid extends Component {
 
     };
 
-    selectElement = (id) => {
-        this.setState({selectedProductCode: id})
-    };
+
     componentDidMount = ()=>{
         activeBlock.addListener('eventActiveBlock',this.selectElement)
 
@@ -35,6 +33,10 @@ class ProductsGrid extends Component {
 
     componentWillUnmount = () => {
         activeBlock.removeListener('eventActiveBlock',this.selectElement)
+    };
+
+    selectElement = (id) => {
+        this.setState({selectedProductCode: id})
     };
 
 
