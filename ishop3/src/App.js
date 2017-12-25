@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ProductsGrid from './components/ProductsGrid'
 
+
 import './App.css';
 
 const washer = 'img/Washer.jpg';

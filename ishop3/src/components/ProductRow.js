@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './ProductsRow.css'
 import PropTypes from 'prop-types';
+import {activeBlock} from './events'
 
 class ProductRow extends Component {
 
@@ -14,16 +15,21 @@ class ProductRow extends Component {
             }
         ),
         selectedState: PropTypes.number,
-        select: PropTypes.func.isRequired,
-
 
     };
+
+    select = () => {
+        activeBlock.emit('eventActiveBlock', this.props.item.id);
+        console.log(activeBlock)
+
+    };
+
 
     render() {
         return (
 
-                <div className='element'
-                     onClick={() => this.props.select(this.props.item.id)}>{this.props.item.name}</div>
+            <div className='element'
+                 onClick={() => this.select}>{this.props.item.name}</div>
 
         )
 

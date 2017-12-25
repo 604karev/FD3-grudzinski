@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './ProductsGrid.css'
 import ProductRow from "./ProductRow";
+import {activeBlock} from './events'
 
 
 class ProductsGrid extends Component {
@@ -27,6 +28,16 @@ class ProductsGrid extends Component {
     selectElement = (id) => {
         this.setState({selectedProductCode: id})
     };
+    componentDidMount = ()=>{
+        activeBlock.addListener('eventActiveBlock',this.selectElement)
+
+    };
+
+    componentWillUnmount = () => {
+        activeBlock.removeListener('eventActiveBlock',this.selectElement)
+    };
+
+
 
 
     render() {
