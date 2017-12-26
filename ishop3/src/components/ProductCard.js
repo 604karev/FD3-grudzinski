@@ -34,6 +34,10 @@ class ProductCard extends Component {
         editMode.removeListener('eventChangingToEditMode', this.changeToEditMode)
     };
 
+    cancel = () => {
+        editMode.emit('eventChangingToEditMode', 1)
+    };
+
 
     render() {
         if (this.state.workMode === 0) {
@@ -75,7 +79,7 @@ class ProductCard extends Component {
                                onChange={(e) => this.setState({newPrice: e.target.value})}/>
                     </p>
                     <p className="formEditRow">
-                        <button className="formEditCancel">Отмена</button>
+                        <button className="formEditCancel" onClick ={this.cancel}>Отмена</button>
                         <button className="formEditSave"
                                 onClick={() => console.log(this.state.newPrice, this.state.newQuantity, this.state.newImg, this.state.newName)}> Сохранить
                         </button>
