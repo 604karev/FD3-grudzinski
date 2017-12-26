@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './ProductsGrid.css'
 import ProductRow from "./ProductRow";
-import {activeBlock} from './events'
+import {activeBlock, removeBlock} from './events';
+import ProductCard from './ProductCard';
 
 
 class ProductsGrid extends Component {
@@ -26,20 +27,31 @@ class ProductsGrid extends Component {
     };
 
 
-    componentDidMount = ()=>{
-        activeBlock.addListener('eventActiveBlock',this.selectElement)
-
+    componentDidMount = () => {
+        activeBlock.addListener('eventActiveBlock', this.selectElement);
+        removeBlock.addListener('eventRemoveBlock', this.deleteBlock);
     };
 
     componentWillUnmount = () => {
-        activeBlock.removeListener('eventActiveBlock',this.selectElement)
+        activeBlock.removeListener('eventActiveBlock', this.selectElement);
+        removeBlock.removeListener('eventRemoveBlock', this.deleteBlock);
     };
 
     selectElement = (id) => {
         this.setState({selectedProductCode: id})
     };
 
+    deleteBlock = (id) => {
+        this.setState({
+            itemsState: this.state.itemsState.filter(
+                (data) => {
+                    return data.id !== id
 
+                }
+            )
+        })
+
+    };
 
 
     render() {
@@ -50,6 +62,8 @@ class ProductsGrid extends Component {
                         <div className='rowWrapper selected' key={data.id}>
                             <ProductRow item={data} selectedState={this.state.selectedProductCode}
                                         select={this.selectElement}/>
+                            <ProductCard key={data.id} id={data.id} name={data.name} quantity={data.quantity}
+                                         img={data.img} price={data.price} workMode={1}/>
                         </div>
                     )
 

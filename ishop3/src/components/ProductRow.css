@@ -2,6 +2,9 @@
     padding: 10px;
     text-align: left;
 }
+.element button{
+    float: right;
+}
 
 .rowWrapper {
     border: 1px solid black;

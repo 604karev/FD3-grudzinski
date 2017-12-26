@@ -4,9 +4,10 @@ import ProductsGrid from './components/ProductsGrid'
 
 import './App.css';
 
-const washer = 'img/Washer.jpg';
-const vacuum = 'img/vacuum.jpg';
-const iron = 'img/iron.jpg';
+const washer = require('./img/Washer.jpg');
+const vacuum = require('./img/vacuum.jpg');
+const iron = require('./img/iron.jpg');
+
 const shopData = [
     {
         id: 1,
@@ -14,7 +15,6 @@ const shopData = [
         price: '344 р.',
         img: washer,
         quantity: 334,
-        isOpened: false
     },
     {
         id: 2,
@@ -22,7 +22,6 @@ const shopData = [
         price: '104 р.',
         img: vacuum,
         quantity: 100,
-        isOpened: false
     },
     {
         id: 3,
@@ -30,7 +29,6 @@ const shopData = [
         price: '54 р.',
         img: iron,
         quantity: 558,
-        isOpened: false
     }
 ];
 

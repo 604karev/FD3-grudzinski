@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import './ProductsRow.css'
+import './ProductRow.css'
 import PropTypes from 'prop-types';
-import {activeBlock} from './events'
+import {activeBlock, editMode, removeBlock} from './events'
 
 class ProductRow extends Component {
 
@@ -18,19 +18,26 @@ class ProductRow extends Component {
 
     };
 
-    select = (e) => {
+    select = () => {
         activeBlock.emit('eventActiveBlock', this.props.item.id);
-        console.log(activeBlock)
-
     };
+    edit = () => {
+        editMode.emit('eventChangingToEditMode', 2)
+    };
+    remove = () => {
+        removeBlock.emit('eventRemoveBlock', this.props.item.id)
 
+    }
 
 
     render() {
         return (
+            <div className='element' onClick={this.select}>
+                <span>{this.props.item.name}</span>
+                <button onClick={this.remove}>Удалить</button>
+                <button onClick={this.edit}>Редактировать</button>
+            </div>
 
-            <div className='element'
-                 onClick={this.select}>{this.props.item.name}</div>
 
         )
 
