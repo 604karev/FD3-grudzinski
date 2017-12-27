@@ -28,7 +28,8 @@ class ProductsGrid extends Component {
     };
 
 
-    selectElement = (id) => {
+    selectElement = (id, e) => {
+        
         this.setState({
             selectedProductCode: id,
             workMode: 1
@@ -47,12 +48,12 @@ class ProductsGrid extends Component {
 
     };
 
-    editElement = (e) => {
+    editElement = (id, e) => {
         e.stopPropagation();
         this.setState({
+            selectedProductCode: id,
             workMode: 2
         });
-        console.log(this.state.workMode)
 
     };
 
