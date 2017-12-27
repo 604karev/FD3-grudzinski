@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './ProductsGrid.css'
 import ProductRow from "./ProductRow";
-import {activeBlock, removeBlock} from './events';
+
 import ProductCard from './ProductCard';
 
 
@@ -23,22 +23,16 @@ class ProductsGrid extends Component {
     state = {
         itemsState: this.props.items,
         selectedProductCode: null,
+        workMode: 0
 
     };
 
-
-    componentDidMount = () => {
-        activeBlock.addListener('eventActiveBlock', this.selectElement);
-        removeBlock.addListener('eventRemoveBlock', this.deleteBlock);
-    };
-
-    componentWillUnmount = () => {
-        activeBlock.removeListener('eventActiveBlock', this.selectElement);
-        removeBlock.removeListener('eventRemoveBlock', this.deleteBlock);
-    };
 
     selectElement = (id) => {
-        this.setState({selectedProductCode: id})
+        this.setState({
+            selectedProductCode: id,
+            workMode: 1
+        })
     };
 
     deleteBlock = (id) => {
@@ -53,6 +47,14 @@ class ProductsGrid extends Component {
 
     };
 
+    editElement = (id) => {
+        this.setState({
+            selectedProductCode: id,
+            workMode: 2
+        })
+
+    };
+
 
     render() {
         let rowTable = this.state.itemsState.map(
@@ -61,9 +63,9 @@ class ProductsGrid extends Component {
                     return (
                         <div className='rowWrapper selected' key={data.id}>
                             <ProductRow item={data} selectedState={this.state.selectedProductCode}
-                                        select={this.selectElement}/>
+                                        select={this.selectElement} delete={this.deleteBlock} edit={this.editElement}/>
                             <ProductCard key={data.id} id={data.id} name={data.name} quantity={data.quantity}
-                                         img={data.img} price={data.price} workMode={1}/>
+                                         img={data.img} price={data.price} workMode={this.state.workMode}/>
                         </div>
                     )
 
@@ -71,17 +73,15 @@ class ProductsGrid extends Component {
                     return (
                         <div className='rowWrapper' key={data.id}>
                             <ProductRow item={data} selectedState={this.state.selectedProductCode}
-                                        select={this.selectElement}/>
+                                        select={this.selectElement} delete={this.deleteBlock} edit={this.editElement}/>
                         </div>
                     )
                 }
-
-
             }
         );
 
 
-        console.log(this.state.selectedProductCode);
+        console.log(this.state.workMode);
 
         return (
             <div className='table'>

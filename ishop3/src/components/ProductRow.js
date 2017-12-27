@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './ProductRow.css'
 import PropTypes from 'prop-types';
-import {activeBlock, editMode, removeBlock} from './events'
+
 
 class ProductRow extends Component {
 
@@ -15,27 +15,19 @@ class ProductRow extends Component {
             }
         ),
         selectedState: PropTypes.number,
+        select: PropTypes.func.isRequired,
+        delete: PropTypes.func.isRequired,
+        edit: PropTypes.func.isRequired,
 
     };
-
-    select = () => {
-        activeBlock.emit('eventActiveBlock', this.props.item.id);
-    };
-    edit = () => {
-        editMode.emit('eventChangingToEditMode', 2)
-    };
-    remove = () => {
-        removeBlock.emit('eventRemoveBlock', this.props.item.id)
-
-    }
 
 
     render() {
         return (
-            <div className='element' onClick={this.select}>
+            <div className='element' onClick={() => this.props.select(this.props.item.id)}>
                 <span>{this.props.item.name}</span>
-                <button onClick={this.remove}>Удалить</button>
-                <button onClick={this.edit}>Редактировать</button>
+                <button onClick={() => this.props.delete(this.props.item.id)}>Удалить</button>
+                <button onClick={() => this.props.edit(this.props.item.id)}>Редактировать</button>
             </div>
 
 

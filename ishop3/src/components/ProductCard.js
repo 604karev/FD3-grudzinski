@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './ProductCard.css';
-import {editMode} from "./events";
+
 
 class ProductCard extends Component {
 
@@ -22,21 +22,8 @@ class ProductCard extends Component {
         newQuantity: this.props.quantity,
     };
 
-    changeToEditMode = (mode) => {
-        this.setState({workMode: mode})
-    };
 
-    componentDidMount = () => {
-        editMode.addListener('eventChangingToEditMode', this.changeToEditMode)
 
-    };
-    componentWillUnmount = () => {
-        editMode.removeListener('eventChangingToEditMode', this.changeToEditMode)
-    };
-
-    cancel = () => {
-        editMode.emit('eventChangingToEditMode', 1)
-    };
 
 
     render() {
