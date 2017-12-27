@@ -14,7 +14,7 @@ class ProductCard extends Component {
         workMode: PropTypes.number.isRequired,
     };
     state = {
-        workMode: this.props.workMode,
+        // workMode: this.props.workMode,
         newImg: this.props.img,
         newId: this.props.id,
         newName: this.props.name,
@@ -27,10 +27,12 @@ class ProductCard extends Component {
 
 
     render() {
-        if (this.state.workMode === 0) {
+
+        console.log(this.props.workMode);
+        if (this.props.workMode === 0) {
             return null
         }
-        if (this.state.workMode === 1) {
+        if (this.props.workMode === 1) {
             return (
                 <div className=' elementCard'>
                     <img src={this.props.img} alt={this.props.name}/>
@@ -41,7 +43,7 @@ class ProductCard extends Component {
             )
 
         }
-        if (this.state.workMode === 2) {
+        if (this.props.workMode === 2) {
             return (
                 <div className='formEdit'>
                     <p className='formEditRow'>

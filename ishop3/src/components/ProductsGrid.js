@@ -81,7 +81,7 @@ class ProductsGrid extends Component {
         );
 
 
-        console.log(this.state.workMode);
+        // console.log(this.state.workMode);
 
         return (
             <div className='table'>
