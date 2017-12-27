@@ -27,7 +27,7 @@ class ProductRow extends Component {
             <div className='element' onClick={() => this.props.select(this.props.item.id)}>
                 <span>{this.props.item.name}</span>
                 <button onClick={() => this.props.delete(this.props.item.id)}>Удалить</button>
-                <button onClick={() => this.props.edit(this.props.item.id)}>Редактировать</button>
+                <button onClick={(e) => this.props.edit(e)}>Редактировать</button>
             </div>
 
 

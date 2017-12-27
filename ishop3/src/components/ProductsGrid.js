@@ -47,11 +47,12 @@ class ProductsGrid extends Component {
 
     };
 
-    editElement = (id) => {
+    editElement = (e) => {
+        e.stopPropagation();
         this.setState({
-            selectedProductCode: id,
             workMode: 2
-        })
+        });
+        console.log(this.state.workMode)
 
     };
 
