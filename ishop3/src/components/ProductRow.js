@@ -24,10 +24,10 @@ class ProductRow extends Component {
 
     render() {
         return (
-            <div className='element' onClick={(e) => this.props.select(this.props.item.id, e)}>
+            <div className='element' onClick={(e) => this.props.select(this.props.item.id)}>
                 <span>{this.props.item.name}</span>
                 <button onClick={(e) => this.props.delete(this.props.item.id, e)}>Удалить</button>
-                <button onClick={(e) => this.props.edit(this.props.item.id,e)}>Редактировать</button>
+                <button onClick={(e) => this.props.edit(this.props.item.id, e)}>Редактировать</button>
             </div>
 
 

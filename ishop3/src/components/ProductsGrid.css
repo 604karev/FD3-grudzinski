@@ -1,7 +1,11 @@
 .table {
     max-width: 600px;
     margin: auto;
+    text-align: left;
 }
 .selected{
     background-color: red;
+}
+.table .formCreateAdd{
+    margin: 10px;
 }

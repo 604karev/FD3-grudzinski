@@ -12,6 +12,8 @@ class ProductCard extends Component {
         img: PropTypes.string.isRequired,
         quantity: PropTypes.number.isRequired,
         workMode: PropTypes.number.isRequired,
+        cancel: PropTypes.func.isRequired,
+        save: PropTypes.func.isRequired,
     };
     state = {
         // workMode: this.props.workMode,
@@ -23,11 +25,7 @@ class ProductCard extends Component {
     };
 
 
-
-
-
     render() {
-
         console.log(this.props.workMode);
         if (this.props.workMode === 0) {
             return null
@@ -39,9 +37,7 @@ class ProductCard extends Component {
                     <div> {' Колличество: ' + this.props.quantity}</div>
                     <div> {' Цена: ' + this.props.price}</div>
                 </div>
-
             )
-
         }
         if (this.props.workMode === 2) {
             return (
@@ -58,9 +54,9 @@ class ProductCard extends Component {
                     </p>
                     <p className='formEditRow'>
                         <label htmlFor="formEditQuantity">Введите колличество</label>
-                        <input id=' formEditQuantity' name=' formEditQuantity' type="text"
+                        <input id=' formEditQuantity' name=' formEditQuantity' type="number"
                                defaultValue={this.state.newQuantity}
-                               onChange={(e) => this.setState({newQuantity: e.target.value})}/>
+                               onChange={(e) => this.setState({newQuantity: e.target.valueAsNumber})}/>
                     </p>
                     <p className='formEditRow'>
                         <label htmlFor="formEditPrice">Введите цену</label>
@@ -68,15 +64,54 @@ class ProductCard extends Component {
                                onChange={(e) => this.setState({newPrice: e.target.value})}/>
                     </p>
                     <p className="formEditRow">
-                        <button className="formEditCancel" onClick ={this.cancel}>Отмена</button>
+                        <button className="formEditCancel"
+                                onClick={this.props.cancel}
+                        >Отмена
+                        </button>
                         <button className="formEditSave"
-                                onClick={() => console.log(this.state.newPrice, this.state.newQuantity, this.state.newImg, this.state.newName)}> Сохранить
+                                onClick={() => this.props.save(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity)}> Сохранить
                         </button>
                     </p>
                 </div>
             )
         }
-
+        if (this.props.workMode === 3) {
+            return (
+                <div className='formCreate'>
+                    <p className='formCreateRow'>
+                        <label htmlFor="formCreateName">Введите название продукта</label>
+                        <input id='formCreateName' name=' formCreateName' type="text" defaultValue={this.state.newName}
+                               onChange={(e) => this.setState({newName: e.target.value})}/>
+                    </p>
+                    <p className='formCreateRow'>
+                        <label htmlFor="formEditFile">Выберите изображение</label>
+                        <input id=' formCreateFile' name=' formCreateFile' type="text" defaultValue={this.state.newImg}
+                               onChange={(e) => this.setState({newImg: e.target.value})}/>
+                    </p>
+                    <p className='formEditRow'>
+                        <label htmlFor="formCreateQuantity">Введите колличество</label>
+                        <input id=' formCreateQuantity' name=' formCreateQuantity' type="number"
+                               defaultValue={this.state.newQuantity}
+                               onChange={(e) => this.setState({newQuantity: e.target.valueAsNumber})}/>
+                    </p>
+                    <p className='formCreateRow'>
+                        <label htmlFor="formCreatePrice">Введите цену</label>
+                        <input id=' formCreatePrice' name=' formCreatePrice' type="text"
+                               defaultValue={this.state.newPrice}
+                               onChange={(e) => this.setState({newPrice: e.target.value})}/>
+                    </p>
+                    <p className="formCreateRow">
+                        <button className="formCreateCancel"
+                                onClick={this.props.cancel}
+                        >Отмена
+                        </button>
+                        <button className="formCreateAdd"
+                                onClick={() => this.props.add(this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity)}> Сохранить
+                        </button>
+                    </p>
+                </div>
+            )
+        }
     }
 }
 

@@ -18,7 +18,6 @@ class ProductsGrid extends Component {
                 }
             )
         )
-
     };
     state = {
         itemsState: this.props.items,
@@ -28,15 +27,15 @@ class ProductsGrid extends Component {
     };
 
 
-    selectElement = (id, e) => {
-        
+    selectElement = (id) => {
         this.setState({
             selectedProductCode: id,
             workMode: 1
         })
     };
 
-    deleteBlock = (id) => {
+    deleteBlock = (id, e) => {
+        e.stopPropagation();
         this.setState({
             itemsState: this.state.itemsState.filter(
                 (data) => {
@@ -54,7 +53,48 @@ class ProductsGrid extends Component {
             selectedProductCode: id,
             workMode: 2
         });
+    };
 
+    cancelEditMode = () => {
+        this.setState({
+            workMode: 1
+        })
+    };
+    saveEditedElement = (id, name, img, price, quantity) => {
+        this.setState({
+            itemsState: this.state.itemsState.map(
+                (data) => {
+                    if (data.id === id) {
+                        data.name = name;
+                        data.quantity = quantity;
+                        data.img = img;
+                        data.price = price;
+                    }
+                    return data;
+                }
+            ),
+            workMode: 1
+        })
+    };
+    setAddingState = () => {
+        this.setState({
+            workMode: 3
+        })
+
+    };
+    addingElements =(name, img, price, quantity)=>{
+        this.setState({
+            itemState: this.state.itemsState.push(
+                {
+                    id: this.state.itemsState.length + 1,
+                    name: name,
+                    img: img,
+                    price: price,
+                    quantity: quantity
+                }
+            ),
+            workMode: 1
+        })
     };
 
 
@@ -65,31 +105,52 @@ class ProductsGrid extends Component {
                     return (
                         <div className='rowWrapper selected' key={data.id}>
                             <ProductRow item={data} selectedState={this.state.selectedProductCode}
-                                        select={this.selectElement} delete={this.deleteBlock} edit={this.editElement}/>
+                                        select={this.selectElement} delete={this.deleteBlock}
+                                        edit={this.editElement}/>
                             <ProductCard key={data.id} id={data.id} name={data.name} quantity={data.quantity}
-                                         img={data.img} price={data.price} workMode={this.state.workMode}/>
+                                         img={data.img} price={data.price} workMode={this.state.workMode}
+                                         cancel={this.cancelEditMode} save={this.saveEditedElement}/>
                         </div>
                     )
-
-                } else {
+                }
+                else {
                     return (
                         <div className='rowWrapper' key={data.id}>
                             <ProductRow item={data} selectedState={this.state.selectedProductCode}
-                                        select={this.selectElement} delete={this.deleteBlock} edit={this.editElement}/>
+                                        select={this.selectElement} delete={this.deleteBlock}
+                                        edit={this.editElement}/>
                         </div>
                     )
                 }
             }
         );
 
+        console.log(this.state.workMode);
+        if (this.state.workMode !== 3) {
+            return (
+                <div className='table'>
+                    {rowTable}
+                    <button className="formCreateAdd"
+                            onClick={this.setAddingState}> Добавить
+                    </button>
 
-        // console.log(this.state.workMode);
+                </div>
+            )
+        } else {
+            return (
+                <div className='table'>
+                    <ProductCard key={this.state.itemsState.length + 1}
+                                 add={this.addingElements}
+                                 workMode={this.state.workMode}
+                                 cancel={this.cancelEditMode} save={this.saveEditedElement}/>
+                    <button className="formCreateAdd"
+                            onClick={this.setAddingState}> Добавить
+                    </button>
 
-        return (
-            <div className='table'>
-                {rowTable}
-            </div>
-        )
+                </div>
+
+            )
+        }
     }
 
 }
