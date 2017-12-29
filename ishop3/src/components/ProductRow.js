@@ -18,17 +18,24 @@ class ProductRow extends Component {
         select: PropTypes.func.isRequired,
         delete: PropTypes.func.isRequired,
         edit: PropTypes.func.isRequired,
+        workMode: PropTypes.number.isRequired
 
     };
 
 
     render() {
         return (
-            <div className='element' onClick={(e) => this.props.select(this.props.item.id)}>
-                <span>{this.props.item.name}</span>
-                <button onClick={(e) => this.props.delete(this.props.item.id, e)}>Удалить</button>
-                <button onClick={(e) => this.props.edit(this.props.item.id, e)}>Редактировать</button>
-            </div>
+            this.props.workMode === 1 || this.props.workMode === 0 ?
+                <div className='element' onClick={(e) => this.props.select(this.props.item.id)}>
+                    <span>{this.props.item.name}</span>
+                    <button onClick={(e) => this.props.delete(this.props.item.id, e)}>Удалить</button>
+                    <button onClick={(e) => this.props.edit(this.props.item.id, e)}>Редактировать</button>
+                </div>
+                : <div className='element' onClick={(e) => this.props.select(this.props.item.id)}>
+                    <span>{this.props.item.name}</span>
+                    <button disabled onClick={(e) => this.props.delete(this.props.item.id, e)}>Удалить</button>
+                    <button disabled onClick={(e) => this.props.edit(this.props.item.id, e)}>Редактировать</button>
+                </div>
 
 
         )

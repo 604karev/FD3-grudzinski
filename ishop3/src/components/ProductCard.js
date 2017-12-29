@@ -25,6 +25,62 @@ class ProductCard extends Component {
     };
 
 
+    submitFormValidation = () => {
+        if (this.props.workMode === 2) {
+            let nameValues = this.state.newName;
+            let imgValues = this.state.newImg;
+            let priceValues = this.state.newPrice;
+            let quantityValues = this.state.newQuantity;
+            if (nameValues.split('').length === 0) {
+                alert('Поле Имя не должно быть путым');
+                return false
+            }
+            if (imgValues.split('').length === 0) {
+                alert('Поле изображение не должно быть путым');
+                return false
+            }
+            if (priceValues.split('').length === 0) {
+                alert('Поле цена не должно быть путым');
+                return false
+            }
+            if (quantityValues.toString().split('').length === 0) {
+                alert('Поле количество не должно быть путым');
+                return false
+            }
+
+            else this.props.save(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity)
+        }
+        if (this.props.workMode === 3) {
+            let nameValues = this.state.newName;
+            let imgValues = this.state.newImg;
+            let priceValues = this.state.newPrice;
+            let quantityValues = this.state.newQuantity;
+            if (nameValues.split('').length === 0) {
+                alert('Поле Имя не должно быть путым');
+                return false
+            }
+            if (imgValues.split('').length === 0) {
+                alert('Поле изображение не должно быть путым');
+                return false
+            }
+            if (priceValues.split('').length === 0) {
+                alert('Поле цена не должно быть путым');
+                return false
+            }
+            if (quantityValues.toString().split('').length === 0) {
+                alert('Поле количество не должно быть путым');
+                return false
+
+            }
+
+            else this.props.add(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity)
+
+        }
+
+
+    };
+
+
     render() {
         console.log(this.props.workMode);
         if (this.props.workMode === 0) {
@@ -41,7 +97,7 @@ class ProductCard extends Component {
         }
         if (this.props.workMode === 2) {
             return (
-                <div className='formEdit'>
+                <form ref="vForm" className='formEdit'>
                     <p className='formEditRow'>
                         <label htmlFor="formEditName">Введите название продукта</label>
                         <input id='formEditName' name=' formEditName' type="text" defaultValue={this.state.newName}
@@ -69,23 +125,27 @@ class ProductCard extends Component {
                         >Отмена
                         </button>
                         <button className="formEditSave"
-                                onClick={() => this.props.save(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity)}> Сохранить
+                                onClick={this.submitFormValidation}> Сохранить
                         </button>
                     </p>
-                </div>
+                </form>
             )
         }
         if (this.props.workMode === 3) {
             return (
-                <div className='formCreate'>
+
+
+                <form ref="vForm" className='formCreate'>
                     <p className='formCreateRow'>
                         <label htmlFor="formCreateName">Введите название продукта</label>
-                        <input id='formCreateName' name=' formCreateName' type="text" defaultValue={this.state.newName}
+                        <input id='formCreateName' name=' formCreateName' type="text"
+                               defaultValue={this.state.newName}
                                onChange={(e) => this.setState({newName: e.target.value})}/>
                     </p>
                     <p className='formCreateRow'>
                         <label htmlFor="formEditFile">Выберите изображение</label>
-                        <input id=' formCreateFile' name=' formCreateFile' type="text" defaultValue={this.state.newImg}
+                        <input id=' formCreateFile' name=' formCreateFile' type="text"
+                               defaultValue={this.state.newImg}
                                onChange={(e) => this.setState({newImg: e.target.value})}/>
                     </p>
                     <p className='formEditRow'>
@@ -106,10 +166,11 @@ class ProductCard extends Component {
                         >Отмена
                         </button>
                         <button className="formCreateAdd"
-                                onClick={() => this.props.add(this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity)}> Сохранить
+                                onClick={this.submitFormValidation}> Сохранить
                         </button>
                     </p>
-                </div>
+                </form>
+
             )
         }
     }

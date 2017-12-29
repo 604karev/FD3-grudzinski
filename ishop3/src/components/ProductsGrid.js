@@ -106,7 +106,7 @@ class ProductsGrid extends Component {
                         <div className='rowWrapper selected' key={data.id}>
                             <ProductRow item={data} selectedState={this.state.selectedProductCode}
                                         select={this.selectElement} delete={this.deleteBlock}
-                                        edit={this.editElement}/>
+                                        edit={this.editElement} workMode={this.state.workMode}/>
                             <ProductCard key={data.id} id={data.id} name={data.name} quantity={data.quantity}
                                          img={data.img} price={data.price} workMode={this.state.workMode}
                                          cancel={this.cancelEditMode} save={this.saveEditedElement}/>
@@ -118,7 +118,7 @@ class ProductsGrid extends Component {
                         <div className='rowWrapper' key={data.id}>
                             <ProductRow item={data} selectedState={this.state.selectedProductCode}
                                         select={this.selectElement} delete={this.deleteBlock}
-                                        edit={this.editElement}/>
+                                        edit={this.editElement} workMode={this.state.workMode}/>
                         </div>
                     )
                 }
@@ -139,7 +139,8 @@ class ProductsGrid extends Component {
         } else {
             return (
                 <div className='table'>
-                    <ProductCard key={this.state.itemsState.length + 1}
+                    {rowTable}
+                    <ProductCard key={this.state.itemsState.length + 1} id={this.state.itemsState.length + 1} quantity={0} name={''} price={''} img={''}
                                  add={this.addingElements}
                                  workMode={this.state.workMode}
                                  cancel={this.cancelEditMode} save={this.saveEditedElement}/>
