@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import './ProductCard.css';
 
 
-class ProductCard extends Component {
+class ProductCard extends PureComponent {
 
     static propTypes = {
         id: PropTypes.number.isRequired,
@@ -22,6 +22,10 @@ class ProductCard extends Component {
         newName: this.props.name,
         newPrice: this.props.price,
         newQuantity: this.props.quantity,
+    };
+
+    componentWillReceiveProps = (newProps) => {
+        console.log("MobileClient id="+this.props.id+" componentWillReceiveProps");
     };
 
 
@@ -82,7 +86,6 @@ class ProductCard extends Component {
 
 
     render() {
-        console.log(this.props.workMode);
         if (this.props.workMode === 0) {
             return null
         }
@@ -133,8 +136,6 @@ class ProductCard extends Component {
         }
         if (this.props.workMode === 3) {
             return (
-
-
                 <form ref="vForm" className='formCreate'>
                     <p className='formCreateRow'>
                         <label htmlFor="formCreateName">Введите название продукта</label>

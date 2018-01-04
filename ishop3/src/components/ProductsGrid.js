@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import './ProductsGrid.css'
 import ProductRow from "./ProductRow";
@@ -6,7 +6,7 @@ import ProductRow from "./ProductRow";
 import ProductCard from './ProductCard';
 
 
-class ProductsGrid extends Component {
+class ProductsGrid extends PureComponent {
     static propTypes = {
         items: PropTypes.arrayOf(
             PropTypes.shape({
@@ -124,8 +124,6 @@ class ProductsGrid extends Component {
                 }
             }
         );
-
-        console.log(this.state.workMode);
         if (this.state.workMode !== 3) {
             return (
                 <div className='table'>

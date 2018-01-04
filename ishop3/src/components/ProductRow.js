@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import './ProductRow.css'
 import PropTypes from 'prop-types';
 
 
-class ProductRow extends Component {
+class ProductRow extends PureComponent {
 
     static propTypes = {
         item: PropTypes.shape({
