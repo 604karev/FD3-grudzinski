@@ -57,7 +57,7 @@ class ProductsGrid extends PureComponent {
 
     cancelEditMode = () => {
         this.setState({
-            workMode: 1
+            workMode: 0
         })
     };
     saveEditedElement = (id, name, img, price, quantity) => {
@@ -73,7 +73,7 @@ class ProductsGrid extends PureComponent {
                     return data;
                 }
             ),
-            workMode: 1
+            workMode: 0
         })
     };
     setAddingState = () => {
@@ -82,7 +82,7 @@ class ProductsGrid extends PureComponent {
         })
 
     };
-    addingElements =(name, img, price, quantity)=>{
+    addingElements = (id, name, img, price, quantity) => {
         this.setState({
             itemState: this.state.itemsState.push(
                 {
@@ -93,15 +93,19 @@ class ProductsGrid extends PureComponent {
                     quantity: quantity
                 }
             ),
-            workMode: 1
+            workMode: 0
         })
+    };
+
+    componentWillReceiveProps = (newProps) => {
+        console.log("id=" + this.props.items.id + " componentProductGridWillReceiveProps");
     };
 
 
     render() {
         let rowTable = this.state.itemsState.map(
             (data) => {
-                if (this.state.selectedProductCode === data.id) {
+                if ((this.state.selectedProductCode === data.id && this.state.workMode === 1)||(this.state.selectedProductCode === data.id && this.state.workMode === 2)) {
                     return (
                         <div className='rowWrapper selected' key={data.id}>
                             <ProductRow item={data} selectedState={this.state.selectedProductCode}
@@ -138,7 +142,8 @@ class ProductsGrid extends PureComponent {
             return (
                 <div className='table'>
                     {rowTable}
-                    <ProductCard key={this.state.itemsState.length + 1} id={this.state.itemsState.length + 1} quantity={0} name={''} price={''} img={''}
+                    <ProductCard key={this.state.itemsState.length + 1} id={this.state.itemsState.length + 1}
+                                 quantity={0} name={''} price={''} img={''}
                                  add={this.addingElements}
                                  workMode={this.state.workMode}
                                  cancel={this.cancelEditMode} save={this.saveEditedElement}/>

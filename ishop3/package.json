@@ -16,5 +16,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-jest": "^22.0.4",
+    "jest": "^22.0.4",
+    "jest-cli": "^22.0.4",
+    "react-test-renderer": "^16.2.0"
+  }
 }

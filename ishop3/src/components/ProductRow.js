@@ -21,9 +21,13 @@ class ProductRow extends PureComponent {
         workMode: PropTypes.number.isRequired
 
     };
+    componentWillReceiveProps = (newProps) => {
+        console.log("id="+this.props.item.id+" componentProductRowWillReceiveProps");
+    };
 
 
     render() {
+        console.log("ProductCard render");
         return (
             this.props.workMode === 1 || this.props.workMode === 0 ?
                 <div className='element' onClick={(e) => this.props.select(this.props.item.id)}>
