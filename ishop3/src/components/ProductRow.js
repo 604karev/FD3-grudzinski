@@ -26,6 +26,8 @@ class ProductRow extends PureComponent {
     render() {
         console.log("ProductRow render");
         console.log(this.props.item);
+        console.log(this.props.selectedState);
+        console.log(this.props.workMode);
         return (
             <div className='element' onClick={(e) => this.props.select(this.props.item.id)}>
                 <span>{this.props.item.name}</span>
