@@ -26,9 +26,6 @@ class ProductCard extends PureComponent {
     };
 
 
-    componentWillReceiveProps = (newProps) => {
-        console.log("id=" + this.props.id + " ProductCard-WillReceiveProps");
-    };
 
 
     checkValidation = () => {

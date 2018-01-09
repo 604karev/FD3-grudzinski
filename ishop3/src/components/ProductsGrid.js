@@ -25,15 +25,12 @@ class ProductsGrid extends PureComponent {
         workMode: 0
 
     };
-
-
     selectElement = (id) => {
         this.setState({
             selectedProductCode: id,
             workMode: 1
         })
     };
-
     deleteBlock = (id, e) => {
         e.stopPropagation();
         this.setState({
@@ -44,9 +41,7 @@ class ProductsGrid extends PureComponent {
                 }
             )
         })
-
     };
-
     editElement = (id, e) => {
         e.stopPropagation();
         this.setState({
@@ -54,7 +49,6 @@ class ProductsGrid extends PureComponent {
             workMode: 2
         });
     };
-
     cancelEditMode = () => {
         this.setState({
             workMode: 0
@@ -95,9 +89,7 @@ class ProductsGrid extends PureComponent {
         })
     };
 
-    componentWillReceiveProps = (newProps) => {
-        console.log("id=" + this.props.items.id + " componentProductGridWillReceiveProps");
-    };
+
 
 
     render() {

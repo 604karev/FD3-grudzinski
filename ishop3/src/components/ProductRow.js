@@ -21,25 +21,16 @@ class ProductRow extends PureComponent {
         workMode: PropTypes.number.isRequired
 
     };
-    componentWillReceiveProps = (newProps) => {
-        console.log("id="+this.props.item.id+" componentProductRowWillReceiveProps");
-    };
 
 
     render() {
         console.log("ProductRow render");
         return (
-            this.props.workMode === 1 || this.props.workMode === 0 ?
-                <div className='element' onClick={(e) => this.props.select(this.props.item.id)}>
-                    <span>{this.props.item.name}</span>
-                    <button onClick={(e) => this.props.delete(this.props.item.id, e)}>Удалить</button>
-                    <button onClick={(e) => this.props.edit(this.props.item.id, e)}>Редактировать</button>
-                </div>
-                : <div className='element' onClick={(e) => this.props.select(this.props.item.id)}>
-                    <span>{this.props.item.name}</span>
-                    <button disabled onClick={(e) => this.props.delete(this.props.item.id, e)}>Удалить</button>
-                    <button disabled onClick={(e) => this.props.edit(this.props.item.id, e)}>Редактировать</button>
-                </div>
+            <div className='element' onClick={(e) => this.props.select(this.props.item.id)}>
+                <span>{this.props.item.name}</span>
+                <button onClick={(e) => this.props.delete(this.props.item.id, e)}>Удалить</button>
+                <button onClick={(e) => this.props.edit(this.props.item.id, e)}>Редактировать</button>
+            </div>
         )
     }
 }
