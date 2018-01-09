@@ -84,15 +84,13 @@ class ProductsGrid extends PureComponent {
     };
     addingElements = (id, name, img, price, quantity) => {
         this.setState({
-            itemState: this.state.itemsState.push(
-                {
-                    id: this.state.itemsState.length + 1,
-                    name: name,
-                    img: img,
-                    price: price,
-                    quantity: quantity
-                }
-            ),
+            itemsState: [...this.state.itemsState, {
+                id: id,
+                name: name,
+                img: img,
+                price: price,
+                quantity: quantity
+            }],
             workMode: 0
         })
     };
@@ -105,7 +103,7 @@ class ProductsGrid extends PureComponent {
     render() {
         let rowTable = this.state.itemsState.map(
             (data) => {
-                if ((this.state.selectedProductCode === data.id && this.state.workMode === 1)||(this.state.selectedProductCode === data.id && this.state.workMode === 2)) {
+                if ((this.state.selectedProductCode === data.id && this.state.workMode === 1) || (this.state.selectedProductCode === data.id && this.state.workMode === 2)) {
                     return (
                         <div className='rowWrapper selected' key={data.id}>
                             <ProductRow item={data} selectedState={this.state.selectedProductCode}

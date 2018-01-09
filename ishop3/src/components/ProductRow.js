@@ -27,7 +27,7 @@ class ProductRow extends PureComponent {
 
 
     render() {
-        console.log("ProductCard render");
+        console.log("ProductRow render");
         return (
             this.props.workMode === 1 || this.props.workMode === 0 ?
                 <div className='element' onClick={(e) => this.props.select(this.props.item.id)}>
@@ -40,11 +40,7 @@ class ProductRow extends PureComponent {
                     <button disabled onClick={(e) => this.props.delete(this.props.item.id, e)}>Удалить</button>
                     <button disabled onClick={(e) => this.props.edit(this.props.item.id, e)}>Редактировать</button>
                 </div>
-
-
         )
-
-
     }
 }
 
