@@ -2,7 +2,6 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import './ProductsGrid.css'
 import ProductRow from "./ProductRow";
-
 import ProductCard from './ProductCard';
 
 
