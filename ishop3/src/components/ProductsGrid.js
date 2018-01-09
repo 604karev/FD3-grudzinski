@@ -87,14 +87,14 @@ class ProductsGrid extends PureComponent {
             workMode: 0
         })
     };
+
     render() {
         let rowTable = this.state.itemsState.map(
             (data) => {
                 if ((this.state.selectedProductCode === data.id && this.state.workMode === 1) || (this.state.selectedProductCode === data.id && this.state.workMode === 2)) {
                     return (
                         <div className='rowWrapper selected' key={data.id}>
-                            <ProductRow item={data} selectedState={this.state.selectedProductCode}
-                                        select={this.selectElement} delete={this.deleteBlock}
+                            <ProductRow item={data} select={this.selectElement} delete={this.deleteBlock}
                                         edit={this.editElement} workMode={this.state.workMode}/>
                             <ProductCard key={data.id} id={data.id} name={data.name} quantity={data.quantity}
                                          img={data.img} price={data.price} workMode={this.state.workMode}
@@ -105,8 +105,7 @@ class ProductsGrid extends PureComponent {
                 else {
                     return (
                         <div className='rowWrapper' key={data.id}>
-                            <ProductRow item={data} selectedState={this.state.selectedProductCode}
-                                        select={this.selectElement} delete={this.deleteBlock}
+                            <ProductRow item={data} select={this.selectElement} delete={this.deleteBlock}
                                         edit={this.editElement} workMode={this.state.workMode}/>
                         </div>
                     )
