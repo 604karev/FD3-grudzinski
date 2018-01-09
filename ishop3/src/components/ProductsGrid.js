@@ -87,10 +87,6 @@ class ProductsGrid extends PureComponent {
             workMode: 0
         })
     };
-
-
-
-
     render() {
         let rowTable = this.state.itemsState.map(
             (data) => {
