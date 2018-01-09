@@ -95,7 +95,7 @@ class ProductsGrid extends PureComponent {
                     return (
                         <div className='rowWrapper selected' key={data.id}>
                             <ProductRow item={data} select={this.selectElement} delete={this.deleteBlock}
-                                        edit={this.editElement} workMode={this.state.workMode}/>
+                                        edit={this.editElement}/>
                             <ProductCard key={data.id} id={data.id} name={data.name} quantity={data.quantity}
                                          img={data.img} price={data.price} workMode={this.state.workMode}
                                          cancel={this.cancelEditMode} save={this.saveEditedElement}/>
@@ -106,7 +106,7 @@ class ProductsGrid extends PureComponent {
                     return (
                         <div className='rowWrapper' key={data.id}>
                             <ProductRow item={data} select={this.selectElement} delete={this.deleteBlock}
-                                        edit={this.editElement} workMode={this.state.workMode}/>
+                                        edit={this.editElement} />
                         </div>
                     )
                 }

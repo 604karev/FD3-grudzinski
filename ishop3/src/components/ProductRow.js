@@ -14,11 +14,10 @@ class ProductRow extends PureComponent {
                 quantity: PropTypes.number.isRequired,
             }
         ),
-        selectedState: PropTypes.number,
         select: PropTypes.func.isRequired,
         delete: PropTypes.func.isRequired,
         edit: PropTypes.func.isRequired,
-        workMode: PropTypes.number.isRequired
+
 
     };
 
@@ -26,7 +25,7 @@ class ProductRow extends PureComponent {
     render() {
         console.log("ProductRow render");
         console.log(this.props.item);
-        console.log('Selected' +this.props.selectedState);
+
         console.log('WorkMode' +this.props.workMode);
         return (
             <div className='element' onClick={(e) => this.props.select(this.props.item.id)}>
