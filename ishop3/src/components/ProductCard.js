@@ -65,7 +65,8 @@ class ProductCard extends PureComponent {
 
     setNewText = () => {
         if (this.newTextRef) { // всегда проверяем - мало ли метод вызовется когда DOM-элемента уже нет или ещё нет?
-            this.setState({newName: this.newTextRef.value});
+            let newText = this.newTextRef.value;
+            this.setState({newName: newText});
         }
     };
 
@@ -80,6 +81,9 @@ class ProductCard extends PureComponent {
             this.props.add(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity)
         }
     };
+
+
+
 
 
     render() {
