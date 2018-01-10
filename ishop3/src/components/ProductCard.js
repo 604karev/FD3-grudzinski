@@ -26,8 +26,6 @@ class ProductCard extends PureComponent {
     };
 
 
-
-
     checkValidation = () => {
 
         let newName = this.state.newName;
@@ -66,13 +64,12 @@ class ProductCard extends PureComponent {
 
 
     submitFormValidation = (e) => {
-        
         e.preventDefault();
-        if (this.props.workMode === 2) {
-            this.checkValidation() ? this.props.save(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity) : null
+        if (this.props.workMode === 2 && this.checkValidation()) {
+            this.props.save(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity)
         }
-        if (this.props.workMode === 3) {
-            this.checkValidation() ? this.props.add(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity) : null
+        if (this.props.workMode === 3 && this.checkValidation()) {
+            this.props.add(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity)
         }
     };
 
@@ -94,7 +91,7 @@ class ProductCard extends PureComponent {
         }
         if (this.props.workMode === 2) {
             return (
-                <div className='formEdit' >
+                <div className='formEdit'>
                     <p className='formEditRow'>
                         <label htmlFor="formEditName">Введите название продукта</label>
                         <input id='formEditName' name=' formEditName' type="text" defaultValue={this.state.newName}
