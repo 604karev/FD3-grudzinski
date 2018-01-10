@@ -37,37 +37,42 @@ class ProductCard extends PureComponent {
 
         if (newName.split('').length === 0) {
             alert('Поле Имя не должно быть путым');
+            return false
 
         }
         if (newImg.split('').length === 0) {
             alert('Поле изображение не должно быть путым');
+            return false
 
         }
         if (newPrice.split('').length === 0) {
             alert('Поле цена не должно быть путым');
+            return false
 
         }
         if (newQuantity.toString().split('').length === 0) {
             alert('Поле количество не должно быть путым');
+            return false
 
         }
+        else return true
 
 
     };
     componentWillReceiveProps = (newProps) => {
         console.log("ProductCard  " + this.props.name + " componentWillReceiveProps");
-        this.setState({newName: newProps.name});
+
     };
 
 
     submitFormValidation = (e) => {
-        console.log(e);
-        // e.preventDefault();
+        
+        e.preventDefault();
         if (this.props.workMode === 2) {
-            !this.checkValidation() ? this.props.save(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity) : null
+            this.checkValidation() ? this.props.save(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity) : null
         }
         if (this.props.workMode === 3) {
-            !this.checkValidation() ? this.props.add(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity) : null
+            this.checkValidation() ? this.props.add(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity) : null
         }
     };
 
