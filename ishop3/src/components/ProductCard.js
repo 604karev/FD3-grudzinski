@@ -57,14 +57,22 @@ class ProductCard extends PureComponent {
 
 
     };
-    componentWillReceiveProps = (newProps) => {
-        console.log("ProductCard  " + this.props.name + " componentWillReceiveProps");
 
+    newTextRef = null;
+    setNewTextRef = (ref) => {
+        this.newTextRef = ref;
+    };
+
+    setNewText = () => {
+        if (this.newTextRef) { // всегда проверяем - мало ли метод вызовется когда DOM-элемента уже нет или ещё нет?
+            this.setState({newName: this.newTextRef.value});
+        }
     };
 
 
     submitFormValidation = (e) => {
-        e.preventDefault();
+        this.setNewText();
+        // e.preventDefault();
         if (this.props.workMode === 2 && this.checkValidation()) {
             this.props.save(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity)
         }
@@ -94,23 +102,23 @@ class ProductCard extends PureComponent {
                 <div className='formEdit'>
                     <p className='formEditRow'>
                         <label htmlFor="formEditName">Введите название продукта</label>
-                        <input id='formEditName' name=' formEditName' type="text" defaultValue={this.state.newName}
-                               onChange={(e) => this.setState({newName: e.target.value})}/>
+                        <input id='formEditName' name=' formEditName' type="text" defaultValue={this.props.name}
+                               ref={this.setNewTextRef}/>
                     </p>
                     <p className='formEditRow'>
                         <label htmlFor="formEditFile">Выберите изображение</label>
-                        <input id=' formEditFile' name=' formEditFile' type="text" defaultValue={this.state.newImg}
+                        <input id=' formEditFile' name=' formEditFile' type="text" defaultValue={this.props.img}
                                onChange={(e) => this.setState({newImg: e.target.value})}/>
                     </p>
                     <p className='formEditRow'>
                         <label htmlFor="formEditQuantity">Введите колличество</label>
                         <input id=' formEditQuantity' name=' formEditQuantity' type="number"
-                               defaultValue={this.state.newQuantity}
+                               defaultValue={this.props.quantity}
                                onChange={(e) => this.setState({newQuantity: e.target.valueAsNumber})}/>
                     </p>
                     <p className='formEditRow'>
                         <label htmlFor="formEditPrice">Введите цену</label>
-                        <input id=' formEditPrice' name=' formEditPrice' type="text" defaultValue={this.state.newPrice}
+                        <input id=' formEditPrice' name=' formEditPrice' type="text" defaultValue={this.props.price}
                                onChange={(e) => this.setState({newPrice: e.target.value})}/>
                     </p>
                     <p className="formEditRow">
@@ -130,25 +138,25 @@ class ProductCard extends PureComponent {
                     <p className='formCreateRow'>
                         <label htmlFor="formCreateName">Введите название продукта</label>
                         <input id='formCreateName' name=' formCreateName' type="text"
-                               defaultValue={this.state.newName}
+                               defaultValue={this.props.name}
                                onChange={(e) => this.setState({newName: e.target.value})}/>
                     </p>
                     <p className='formCreateRow'>
                         <label htmlFor="formEditFile">Выберите изображение</label>
                         <input id=' formCreateFile' name=' formCreateFile' type="text"
-                               defaultValue={this.state.newImg}
+                               defaultValue={this.props.img}
                                onChange={(e) => this.setState({newImg: e.target.value})}/>
                     </p>
                     <p className='formEditRow'>
                         <label htmlFor="formCreateQuantity">Введите колличество</label>
                         <input id=' formCreateQuantity' name=' formCreateQuantity' type="number"
-                               defaultValue={this.state.newQuantity}
+                               defaultValue={this.props.quantity}
                                onChange={(e) => this.setState({newQuantity: e.target.valueAsNumber})}/>
                     </p>
                     <p className='formCreateRow'>
                         <label htmlFor="formCreatePrice">Введите цену</label>
                         <input id=' formCreatePrice' name=' formCreatePrice' type="text"
-                               defaultValue={this.state.newPrice}
+                               defaultValue={this.props.price}
                                onChange={(e) => this.setState({newPrice: e.target.value})}/>
                     </p>
                     <p className="formCreateRow">
