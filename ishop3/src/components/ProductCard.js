@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import './ProductCard.css';
-import Immutable from 'immutable';
 
 
 class ProductCard extends PureComponent {
@@ -15,6 +14,7 @@ class ProductCard extends PureComponent {
         workMode: PropTypes.number.isRequired,
         cancel: PropTypes.func.isRequired,
         save: PropTypes.func.isRequired,
+        add: PropTypes.func.isRequired,
     };
     state = {
         // workMode: this.props.workMode,
@@ -54,11 +54,15 @@ class ProductCard extends PureComponent {
 
 
     };
+    componentWillReceiveProps = (newProps) => {
+        console.log("ProductCard  " + this.props.name + " componentWillReceiveProps");
+        this.setState({newName: newProps.name});
+    };
 
 
     submitFormValidation = (e) => {
         console.log(e);
-        e.preventDefault();
+        // e.preventDefault();
         if (this.props.workMode === 2) {
             !this.checkValidation() ? this.props.save(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity) : null
         }
@@ -85,7 +89,7 @@ class ProductCard extends PureComponent {
         }
         if (this.props.workMode === 2) {
             return (
-                <div ref="vForm" className='formEdit' >
+                <div className='formEdit' >
                     <p className='formEditRow'>
                         <label htmlFor="formEditName">Введите название продукта</label>
                         <input id='formEditName' name=' formEditName' type="text" defaultValue={this.state.newName}
@@ -120,7 +124,7 @@ class ProductCard extends PureComponent {
         }
         if (this.props.workMode === 3) {
             return (
-                <div ref="vForm" className='formCreate'>
+                <div className='formCreate'>
                     <p className='formCreateRow'>
                         <label htmlFor="formCreateName">Введите название продукта</label>
                         <input id='formCreateName' name=' formCreateName' type="text"

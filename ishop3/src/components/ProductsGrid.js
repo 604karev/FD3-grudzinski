@@ -94,19 +94,19 @@ class ProductsGrid extends PureComponent {
                 if ((this.state.selectedProductCode === data.id && this.state.workMode === 1) || (this.state.selectedProductCode === data.id && this.state.workMode === 2)) {
                     return (
                         <div className='rowWrapper selected' key={data.id}>
-                            <ProductRow item={data} select={this.selectElement} delete={this.deleteBlock}
-                                        edit={this.editElement}/>
+                            <ProductRow name={data.name} select={this.selectElement} delete={this.deleteBlock}
+                                        edit={this.editElement} id={data.id}/>
                             <ProductCard key={data.id} id={data.id} name={data.name} quantity={data.quantity}
                                          img={data.img} price={data.price} workMode={this.state.workMode}
-                                         cancel={this.cancelEditMode} save={this.saveEditedElement}/>
+                                         cancel={this.cancelEditMode} save={this.saveEditedElement} add={this.addingElements}/>
                         </div>
                     )
                 }
                 else {
                     return (
                         <div className='rowWrapper' key={data.id}>
-                            <ProductRow item={data} select={this.selectElement} delete={this.deleteBlock}
-                                        edit={this.editElement} />
+                            <ProductRow name={data.name} select={this.selectElement} delete={this.deleteBlock}
+                                        edit={this.editElement}  id={data.id} />
                         </div>
                     )
                 }
@@ -119,7 +119,6 @@ class ProductsGrid extends PureComponent {
                     <button className="formCreateAdd"
                             onClick={this.setAddingState}> Добавить
                     </button>
-
                 </div>
             )
         } else {
@@ -134,9 +133,7 @@ class ProductsGrid extends PureComponent {
                     <button className="formCreateAdd"
                             onClick={this.setAddingState}> Добавить
                     </button>
-
                 </div>
-
             )
         }
     }
