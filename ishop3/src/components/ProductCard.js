@@ -85,10 +85,10 @@ class ProductCard extends PureComponent {
 
         // e.preventDefault();
         if (this.props.workMode === 2 && this.checkValidation()) {
-            this.props.save(this.state.newId, this.newNameRef.value, this.newImgRef.value, this.newPriceRef.value, this.newQuantityRef.value)
+            this.props.save(this.state.newId, this.newNameRef.value, this.newImgRef.value, this.newPriceRef.value, this.newQuantityRef.valueAsNumber)
         }
         if (this.props.workMode === 3 && this.checkValidation()) {
-            this.props.add(this.state.newId, this.newNameRef.value, this.newImgRef.value, this.newPriceRef.value, this.newQuantityRef.value)
+            this.props.add(this.state.newId, this.newNameRef.value, this.newImgRef.value, this.newPriceRef.value, this.newQuantityRef.valueAsNumber)
         }
     };
 
