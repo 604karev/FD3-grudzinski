@@ -26,12 +26,32 @@ class ProductCard extends PureComponent {
     };
 
 
+
+
+    newNameRef = null;
+    newImgRef = null;
+    newQuantityRef = null;
+    newPriceRef = null;
+
+    setNewNameRef = (ref) => {
+        this.newNameRef = ref;
+    };
+    setNewImgRef = (ref) => {
+        this.newImgRef = ref;
+    };
+    setNewQuantityRef = (ref) => {
+        this.newQuantityRef = ref;
+    };
+    setNewPriceRef = (ref) => {
+        this.newPriceRef = ref;
+    };
+
     checkValidation = () => {
 
-        let newName = this.state.newName;
-        let newImg = this.state.newImg;
-        let newPrice = this.state.newPrice;
-        let newQuantity = this.state.newQuantity;
+        let newName = this.newNameRef.value;
+        let newImg = this.newImgRef.value;
+        let newPrice = this.newPriceRef.value;
+        let newQuantity = this.newQuantityRef.value;
 
         if (newName.split('').length === 0) {
             alert('Поле Имя не должно быть путым');
@@ -58,32 +78,19 @@ class ProductCard extends PureComponent {
 
     };
 
-    newTextRef = null;
-    setNewTextRef = (ref) => {
-        this.newTextRef = ref;
-    };
 
-    setNewText = () => {
-        if (this.newTextRef) { // всегда проверяем - мало ли метод вызовется когда DOM-элемента уже нет или ещё нет?
-            let newText = this.newTextRef.value;
-            this.setState({newName: newText});
-        }
-    };
 
 
     submitFormValidation = (e) => {
-        this.setNewText();
+
         // e.preventDefault();
         if (this.props.workMode === 2 && this.checkValidation()) {
-            this.props.save(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity)
+            this.props.save(this.state.newId, this.newNameRef.value, this.newImgRef.value, this.newPriceRef.value, this.newQuantityRef.value)
         }
         if (this.props.workMode === 3 && this.checkValidation()) {
-            this.props.add(this.state.newId, this.state.newName, this.state.newImg, this.state.newPrice, this.state.newQuantity)
+            this.props.add(this.state.newId, this.newNameRef.value, this.newImgRef.value, this.newPriceRef.value, this.newQuantityRef.value)
         }
     };
-
-
-
 
 
     render() {
@@ -107,23 +114,23 @@ class ProductCard extends PureComponent {
                     <p className='formEditRow'>
                         <label htmlFor="formEditName">Введите название продукта</label>
                         <input id='formEditName' name=' formEditName' type="text" defaultValue={this.props.name}
-                               ref={this.setNewTextRef}/>
+                               ref={this.setNewNameRef}/>
                     </p>
                     <p className='formEditRow'>
                         <label htmlFor="formEditFile">Выберите изображение</label>
                         <input id=' formEditFile' name=' formEditFile' type="text" defaultValue={this.props.img}
-                               onChange={(e) => this.setState({newImg: e.target.value})}/>
+                               ref={this.setNewImgRef}/>
                     </p>
                     <p className='formEditRow'>
                         <label htmlFor="formEditQuantity">Введите колличество</label>
                         <input id=' formEditQuantity' name=' formEditQuantity' type="number"
                                defaultValue={this.props.quantity}
-                               onChange={(e) => this.setState({newQuantity: e.target.valueAsNumber})}/>
+                               ref={this.setNewQuantityRef}/>
                     </p>
                     <p className='formEditRow'>
                         <label htmlFor="formEditPrice">Введите цену</label>
                         <input id=' formEditPrice' name=' formEditPrice' type="text" defaultValue={this.props.price}
-                               onChange={(e) => this.setState({newPrice: e.target.value})}/>
+                               ref={this.setNewPriceRef}/>
                     </p>
                     <p className="formEditRow">
                         <button className="formEditCancel"
@@ -143,25 +150,25 @@ class ProductCard extends PureComponent {
                         <label htmlFor="formCreateName">Введите название продукта</label>
                         <input id='formCreateName' name=' formCreateName' type="text"
                                defaultValue={this.props.name}
-                               onChange={(e) => this.setState({newName: e.target.value})}/>
+                               ref={this.setNewNameRef}/>
                     </p>
                     <p className='formCreateRow'>
                         <label htmlFor="formEditFile">Выберите изображение</label>
                         <input id=' formCreateFile' name=' formCreateFile' type="text"
                                defaultValue={this.props.img}
-                               onChange={(e) => this.setState({newImg: e.target.value})}/>
+                               ref={this.setNewImgRef}/>
                     </p>
                     <p className='formEditRow'>
                         <label htmlFor="formCreateQuantity">Введите колличество</label>
                         <input id=' formCreateQuantity' name=' formCreateQuantity' type="number"
                                defaultValue={this.props.quantity}
-                               onChange={(e) => this.setState({newQuantity: e.target.valueAsNumber})}/>
+                               ref={this.setNewQuantityRef}/>
                     </p>
                     <p className='formCreateRow'>
                         <label htmlFor="formCreatePrice">Введите цену</label>
                         <input id=' formCreatePrice' name=' formCreatePrice' type="text"
                                defaultValue={this.props.price}
-                               onChange={(e) => this.setState({newPrice: e.target.value})}/>
+                               ref={this.setNewPriceRef}/>
                     </p>
                     <p className="formCreateRow">
                         <button className="formCreateCancel"
