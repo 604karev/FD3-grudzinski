@@ -90,8 +90,6 @@ class ProductsGrid extends PureComponent {
     };
 
     render() {
-        console.log(this.state.itemsState[this.state.itemsState.length - 1].id);
-
 
         let rowTable = this.state.itemsState.map(
             (data) => {
