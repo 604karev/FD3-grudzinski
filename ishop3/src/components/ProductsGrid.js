@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './ProductsGrid.css'
 import ProductRow from "./ProductRow";
 import ProductCard from './ProductCard';
+import has from 'lodash/has';
 
 
 class ProductsGrid extends PureComponent {
@@ -89,6 +90,9 @@ class ProductsGrid extends PureComponent {
     };
 
     render() {
+        console.log(this.state.itemsState[this.state.itemsState.length - 1].id);
+
+
         let rowTable = this.state.itemsState.map(
             (data) => {
                 if ((this.state.selectedProductCode === data.id && this.state.workMode === 1) || (this.state.selectedProductCode === data.id && this.state.workMode === 2)) {
@@ -98,7 +102,8 @@ class ProductsGrid extends PureComponent {
                                         edit={this.editElement} id={data.id}/>
                             <ProductCard key={data.id} id={data.id} name={data.name} quantity={data.quantity}
                                          img={data.img} price={data.price} workMode={this.state.workMode}
-                                         cancel={this.cancelEditMode} save={this.saveEditedElement} add={this.addingElements}/>
+                                         cancel={this.cancelEditMode} save={this.saveEditedElement}
+                                         add={this.addingElements}/>
                         </div>
                     )
                 }
@@ -106,7 +111,7 @@ class ProductsGrid extends PureComponent {
                     return (
                         <div className='rowWrapper' key={data.id}>
                             <ProductRow name={data.name} select={this.selectElement} delete={this.deleteBlock}
-                                        edit={this.editElement}  id={data.id} />
+                                        edit={this.editElement} id={data.id}/>
                         </div>
                     )
                 }
@@ -125,7 +130,8 @@ class ProductsGrid extends PureComponent {
             return (
                 <div className='table'>
                     {rowTable}
-                    <ProductCard key={this.state.itemsState.length + 1} id={this.state.itemsState.length + 1}
+                    <ProductCard key={this.state.itemsState[this.state.itemsState.length - 1].id + 1}
+                                 id={this.state.itemsState[this.state.itemsState.length - 1].id + 1}
                                  quantity={0} name={''} price={''} img={''}
                                  add={this.addingElements}
                                  workMode={this.state.workMode}
