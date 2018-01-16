@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './ProductsGrid.css'
 import ProductRow from "./ProductRow";
 import ProductCard from './ProductCard';
-import has from 'lodash/has';
 
 
 class ProductsGrid extends PureComponent {
@@ -22,9 +21,12 @@ class ProductsGrid extends PureComponent {
     state = {
         itemsState: this.props.items,
         selectedProductCode: null,
-        workMode: 0
-
+        workMode: 0,
     };
+
+    lastUsedId = this.state.itemsState.reduce((prev, cur) => cur.id > prev.id ? cur : prev, {id: 0}).id;
+
+
     selectElement = (id) => {
         this.setState({
             selectedProductCode: id,
@@ -90,6 +92,7 @@ class ProductsGrid extends PureComponent {
     };
 
     render() {
+        console.log(this.lastUsedId);
 
         let rowTable = this.state.itemsState.map(
             (data) => {
@@ -128,8 +131,8 @@ class ProductsGrid extends PureComponent {
             return (
                 <div className='table'>
                     {rowTable}
-                    <ProductCard key={this.state.itemsState[this.state.itemsState.length - 1].id + 1}
-                                 id={this.state.itemsState[this.state.itemsState.length - 1].id + 1}
+                    <ProductCard key={this.lastUsedId++}
+                                 id={this.lastUsedId}
                                  quantity={0} name={''} price={''} img={''}
                                  add={this.addingElements}
                                  workMode={this.state.workMode}
