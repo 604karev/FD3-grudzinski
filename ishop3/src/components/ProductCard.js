@@ -74,8 +74,6 @@ class ProductCard extends PureComponent {
 
         }
         else return true
-
-
     };
 
 

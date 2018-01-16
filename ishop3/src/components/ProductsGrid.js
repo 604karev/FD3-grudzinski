@@ -81,7 +81,7 @@ class ProductsGrid extends PureComponent {
     addingElements = (id, name, img, price, quantity) => {
         this.setState({
             itemsState: [...this.state.itemsState, {
-                id: id,
+                id: ++this.lastUsedId,
                 name: name,
                 img: img,
                 price: price,
@@ -130,7 +130,7 @@ class ProductsGrid extends PureComponent {
             return (
                 <div className='table'>
                     {rowTable}
-                    <ProductCard key={this.lastUsedId++}
+                    <ProductCard key={this.lastUsedId}
                                  id={this.lastUsedId}
                                  quantity={0} name={''} price={''} img={''}
                                  add={this.addingElements}
