@@ -16,14 +16,6 @@ class ProductCard extends PureComponent {
         save: PropTypes.func.isRequired,
         add: PropTypes.func.isRequired,
     };
-    state = {
-        // workMode: this.props.workMode,
-        newImg: this.props.img,
-        newId: this.props.id,
-        newName: this.props.name,
-        newPrice: this.props.price,
-        newQuantity: this.props.quantity
-    };
 
 
 
@@ -92,7 +84,7 @@ class ProductCard extends PureComponent {
 
 
     render() {
-        // console.log(this.props.workMode);
+        console.log(this.props.state);
         console.log("ProductCard render");
         if (this.props.workMode === 0) {
             return null

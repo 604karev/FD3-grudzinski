@@ -21,7 +21,7 @@ class ProductsGrid extends PureComponent {
     state = {
         itemsState: this.props.items,
         selectedProductCode: null,
-        workMode: 0,
+        workMode: this.props.workMode,
     };
 
     lastUsedId = this.state.itemsState.reduce((prev, cur) => cur.id > prev.id ? cur : prev, {id: 0}).id;
@@ -76,7 +76,6 @@ class ProductsGrid extends PureComponent {
         this.setState({
             workMode: 3
         })
-
     };
     addingElements = (id, name, img, price, quantity) => {
         this.setState({
@@ -92,6 +91,7 @@ class ProductsGrid extends PureComponent {
     };
 
     render() {
+        console.log(this.props);
 
         let rowTable = this.state.itemsState.map(
             (data) => {
