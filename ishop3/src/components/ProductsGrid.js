@@ -91,7 +91,7 @@ class ProductsGrid extends PureComponent {
     };
 
     render() {
-        console.log(this.props);
+        console.log(this.props.state);
 
         let rowTable = this.state.itemsState.map(
             (data) => {

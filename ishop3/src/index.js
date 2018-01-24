@@ -38,15 +38,15 @@ const initialState = {
 
 function internetShop(state = initialState, action) {
     if (action.type === 'ADD_ROW') {
-        return [
+        return {
             ...state
+        }
 
-        ]
+
     } else if (action.type === 'CHANGE_WORK_MODE') {
-        return [
-            ...state, state.selectedProductCode = action.id, state.workMode = 1
-
-        ];
+        return {
+            ...state, ...state.workMode = 1, ...state.selectedProductCode = action.id
+        };
     }
     return state
 }
