@@ -3,6 +3,7 @@ import './ProductsGrid.css'
 import ProductRow from "./ProductRow";
 import ProductCard from './ProductCard';
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom'
 
 
 class ProductsGrid extends PureComponent {
@@ -42,6 +43,8 @@ class ProductsGrid extends PureComponent {
     };
 
     render() {
+
+        console.log(this.props.match.params.category);
         let rowTable = this.props.store.shopData.motherboard.map(
             (data) => {
                 if ((this.props.store.selectedProductCode === data.id && this.props.store.workMode === 1) || (this.props.store.selectedProductCode === data.id && this.props.store.workMode === 2)) {
@@ -96,7 +99,7 @@ class ProductsGrid extends PureComponent {
 }
 
 
-export default connect(
+export default withRouter(connect(
     (state) => ({store: state}),
 
     (dispatch) => ({
@@ -128,4 +131,4 @@ export default connect(
         }
 
     })
-)(ProductsGrid)
+)(ProductsGrid))

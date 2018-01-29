@@ -10,9 +10,9 @@ class ProductsRoute extends React.Component {
 
         return (
             <div>
-                <Route path='/videoCards' component={ProductsGrid} />
-                <Route path='/processors' component={ProductsGrid} />
-                <Route path='/motherboard' component={ProductsGrid} />
+                <Route path="/videoCards" component={ProductsGrid} />
+                <Route path="/processors" component={ProductsGrid} />
+                <Route path="/motherboard/:category" component={ProductsGrid} />
             </div>
         );
 
