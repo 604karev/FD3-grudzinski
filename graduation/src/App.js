@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
-import ProductsGrid from './components/ProductsGrid';
+import ProductsRoute from './components/ProductsRoute'
+
 import './App.css';
+import ProductsCategory from "./components/ProductsCategory";
 
 
 class App extends Component {
     render() {
-
         return (
             <div className="App">
-                <ProductsGrid />
+                <ProductsCategory/>
+                <ProductsRoute/>
             </div>
         );
     }

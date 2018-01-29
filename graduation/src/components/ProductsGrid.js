@@ -7,7 +7,9 @@ import {connect} from 'react-redux';
 
 class ProductsGrid extends PureComponent {
 
-    lastUsedId = this.props.store.shopData.reduce((prev, cur) => cur.id > prev.id ? cur : prev, {id: 0}).id;
+
+
+    lastUsedId = this.props.store.shopData.motherboard.reduce((prev, cur) => cur.id > prev.id ? cur : prev, {id: 0}).id;
 
     selectingElement = (id) => {
         this.props.onChangeWorkMode(id)
@@ -32,6 +34,7 @@ class ProductsGrid extends PureComponent {
     };
 
     setAddingMode = () => {
+        ++this.lastUsedId;
         this.props.onSetAddingMode()
     };
     addingElement = (id, name, img, price, quantity) => {
@@ -39,10 +42,7 @@ class ProductsGrid extends PureComponent {
     };
 
     render() {
-        console.log(this.props);
-
-
-        let rowTable = this.props.store.shopData.map(
+        let rowTable = this.props.store.shopData.motherboard.map(
             (data) => {
                 if ((this.props.store.selectedProductCode === data.id && this.props.store.workMode === 1) || (this.props.store.selectedProductCode === data.id && this.props.store.workMode === 2)) {
                     return (
@@ -80,7 +80,7 @@ class ProductsGrid extends PureComponent {
             return (
                 <div className='table'>
                     {rowTable}
-                    <ProductCard key={++this.lastUsedId}
+                    <ProductCard key={this.lastUsedId}
                                  id={this.lastUsedId}
                                  quantity={0} name={''} price={''} img={''}
                                  add={this.addingElement}

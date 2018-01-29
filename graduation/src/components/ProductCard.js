@@ -83,7 +83,6 @@ class ProductCard extends PureComponent {
 
 
     render() {
-        console.log(this.props.id);
         console.log("ProductCard render");
         if (this.props.workMode === 0) {
             return null
