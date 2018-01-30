@@ -1,18 +1,17 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Route} from 'react-router-dom';
 import ProductsGrid from './ProductsGrid';
+import ProductsCategory from "./ProductsCategory";
 
 
-
-class ProductsRoute extends React.Component {
+class ProductsRoute extends Component {
 
     render() {
 
         return (
             <div>
-                <Route path="/videoCards" component={ProductsGrid} />
-                <Route path="/processors" component={ProductsGrid} />
-                <Route path="/motherboard/:category" component={ProductsGrid} />
+                <Route to="/" copmonent={ProductsCategory} />
+                <Route path="/:category" component={ProductsGrid}/>
             </div>
         );
 

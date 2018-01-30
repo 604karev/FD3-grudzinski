@@ -8,14 +8,15 @@ const intelCorei38100 = require('../img/Intel Core i3-8100.jpeg');
 const intelCorei58400 = require('../img/Intel Core i5-8400.jpeg');
 const intelCorei78700K = require('../img/Intel Core i7-8700K.jpeg');
 
-const shopData = {
-    motherboard: [
+const shopData = [
+
         {
             id: 1,
             name: 'ASRock N68C-GS4 FX',
             price: '344 р.',
             img: aSRockN68CGS4,
             quantity: 334,
+            category: 'motherboard',
         },
         {
             id: 2,
@@ -23,6 +24,7 @@ const shopData = {
             price: '104 р.',
             img: asusPRIMEH270PLUS,
             quantity: 100,
+            category: 'motherboard',
         },
         {
             id: 3,
@@ -30,64 +32,74 @@ const shopData = {
             price: '54 р.',
             img: asusPRIMEZ270P,
             quantity: 558,
-        }],
-    videoCard: [
+            category: 'motherboard',
+        },
+
         {
-            id: 1,
+            id: 4,
             name: 'ASUS GeForce GTX 1060 6GB GDDR5',
             price: '344 р.',
             img: geForceGTX10606GBGDDR5,
             quantity: 334,
+            category: 'videoCard'
         },
         {
-            id: 2,
-            name: 'MSI GeForce GTX 1060 Gaming X 6GB GDDR5',
+            id: 5,
+            name: 'Gigabyte AORUS GeForce GTX 1080 Ti 11GB GDDR5X',
             price: '104 р.',
             img: geForceGTX1080Ti11GBGDDR5X,
             quantity: 100,
+            category: 'videoCard'
         },
         {
-            id: 3,
+            id: 6,
             name: 'MSI GeForce GTX 1060 Gaming X 6GB GDDR5',
             price: '54 р.',
             img: geForceGTX1060GamingX6GBGDDR5,
             quantity: 558,
-        }],
-    processors: [
+            category: 'videoCard'
+        },
+
         {
-            id: 1,
+            id: 7,
             name: 'Intel Core i3-8100',
             price: '344 р.',
             img: intelCorei38100,
             quantity: 334,
+            category: 'processors'
         },
         {
-            id: 2,
+            id: 8,
             name: 'Intel Core i5-8400',
             price: '104 р.',
             img: intelCorei58400,
             quantity: 100,
+            category: 'processors'
         },
         {
-            id: 3,
+            id: 9,
             name: 'Intel Core i7-8700K',
             price: '54 р.',
             img: intelCorei78700K,
             quantity: 558,
-        }]
-};
+            category: 'processors'
+        }
+];
 
 export default function internetShop(state = shopData, action) {
     if (action.type === 'ADD_ROW') {
+        console.log(...state);
         return [
             ...state, {
                 id: action.id,
                 name: action.name,
                 img: action.img,
                 price: action.price,
-                quantity: action.quantity
+                quantity: action.quantity,
+                category: action.category
             }
-        ];
+        ]
+
     } else if (action.type === 'REMOVE_ROW') {
         return [
             ...state.filter(

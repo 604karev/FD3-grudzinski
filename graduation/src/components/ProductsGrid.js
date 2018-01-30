@@ -3,14 +3,12 @@ import './ProductsGrid.css'
 import ProductRow from "./ProductRow";
 import ProductCard from './ProductCard';
 import {connect} from 'react-redux';
-import { withRouter } from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
 
 class ProductsGrid extends PureComponent {
 
-
-
-    lastUsedId = this.props.store.shopData.motherboard.reduce((prev, cur) => cur.id > prev.id ? cur : prev, {id: 0}).id;
+    lastUsedId = this.props.store.shopData.reduce((prev, cur) => cur.id > prev.id ? cur : prev, {id: 0}).id;
 
     selectingElement = (id) => {
         this.props.onChangeWorkMode(id)
@@ -38,17 +36,24 @@ class ProductsGrid extends PureComponent {
         ++this.lastUsedId;
         this.props.onSetAddingMode()
     };
-    addingElement = (id, name, img, price, quantity) => {
-        this.props.onAddingElement(id, name, img, price, quantity)
+    addingElement = (id, name, img, price, quantity, category) => {
+        this.props.onAddingElement(id, name, img, price, quantity, category)
     };
 
     render() {
+        let categoryData =[...this.props.store.shopData].filter(
+            (data) => {
 
-        console.log(this.props.match.params.category);
-        let rowTable = this.props.store.shopData.motherboard.map(
+                return data.category=== this.props.match.params.category
+            }
+        );
+
+
+        let rowTable = categoryData.map(
             (data) => {
                 if ((this.props.store.selectedProductCode === data.id && this.props.store.workMode === 1) || (this.props.store.selectedProductCode === data.id && this.props.store.workMode === 2)) {
                     return (
+
                         <div className='rowWrapper selected' key={data.id}>
                             <ProductRow name={data.name} select={this.selectingElement}
                                         delete={this.deletingElement}
@@ -85,6 +90,7 @@ class ProductsGrid extends PureComponent {
                     {rowTable}
                     <ProductCard key={this.lastUsedId}
                                  id={this.lastUsedId}
+                                 category={this.props.match.params.category}
                                  quantity={0} name={''} price={''} img={''}
                                  add={this.addingElement}
                                  workMode={this.props.store.workMode}
@@ -124,8 +130,8 @@ export default withRouter(connect(
         onSetAddingMode: () => {
             dispatch({type: 'ADD_WORK_MODE'})
         },
-        onAddingElement: (id, name, img, price, quantity) => {
-            dispatch({type: 'ADD_ROW', id: id, name: name, img: img, price: price, quantity: quantity});
+        onAddingElement: (id, name, img, price, quantity, category) => {
+            dispatch({type: 'ADD_ROW', id: id, name: name, img: img, price: price, quantity: quantity, category:category});
             dispatch({type: 'DEFAULT_WORK_MODE'})
 
         }

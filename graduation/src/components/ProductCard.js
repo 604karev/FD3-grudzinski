@@ -77,7 +77,7 @@ class ProductCard extends PureComponent {
             this.props.save(this.props.id, this.newNameRef.value, this.newImgRef.value, this.newPriceRef.value, this.newQuantityRef.valueAsNumber)
         }
         if (this.props.workMode === 3 && this.checkValidation()) {
-            this.props.add(this.props.id, this.newNameRef.value, this.newImgRef.value, this.newPriceRef.value, this.newQuantityRef.valueAsNumber)
+            this.props.add(this.props.id, this.newNameRef.value, this.newImgRef.value, this.newPriceRef.value, this.newQuantityRef.valueAsNumber, this.props.category)
         }
     };
 
