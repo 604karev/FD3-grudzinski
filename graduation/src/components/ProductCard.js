@@ -17,9 +17,6 @@ class ProductCard extends PureComponent {
         add: PropTypes.func.isRequired,
     };
 
-
-
-
     newNameRef = null;
     newImgRef = null;
     newQuantityRef = null;

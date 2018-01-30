@@ -48,7 +48,6 @@ class ProductsGrid extends PureComponent {
             }
         );
 
-
         let rowTable = categoryData.map(
             (data) => {
                 if ((this.props.store.selectedProductCode === data.id && this.props.store.workMode === 1) || (this.props.store.selectedProductCode === data.id && this.props.store.workMode === 2)) {

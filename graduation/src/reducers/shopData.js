@@ -88,7 +88,6 @@ const shopData = [
 
 export default function internetShop(state = shopData, action) {
     if (action.type === 'ADD_ROW') {
-        console.log(...state);
         return [
             ...state, {
                 id: action.id,
