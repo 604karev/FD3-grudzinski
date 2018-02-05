@@ -7,13 +7,11 @@ exports[`renders correctly 1`] = `
 >
   <span />
   <button
-    disabled={true}
     onClick={[Function]}
   >
     Удалить
   </button>
   <button
-    disabled={true}
     onClick={[Function]}
   >
     Редактировать

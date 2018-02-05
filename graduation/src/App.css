@@ -1,5 +1,11 @@
 .App {
-  text-align: center;
+    text-align: center;
+    padding: 20px 15px;
+    background-color: #f0f3f7;
+    height: 100%;
+    font-family: Roboto, sans-serif;
+
+
 }
 
 .App-logo {

@@ -3,7 +3,7 @@ import './ProductsGrid.css'
 import ProductRow from "./ProductRow";
 import ProductCard from './ProductCard';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom'
+import FontAwesome from 'react-fontawesome';
 
 
 class ProductsGrid extends PureComponent {
@@ -28,75 +28,112 @@ class ProductsGrid extends PureComponent {
         this.props.onCancelEditingMode();
     };
 
-    saveEditedElement = (id, name, img, price, quantity) => {
-        this.props.onSaveEditedElement(id, name, img, price, quantity)
+    saveEditedElement = (id, name, img, price, quantity, description) => {
+        this.props.onSaveEditedElement(id, name, img, price, quantity, description)
     };
 
     setAddingMode = () => {
         ++this.lastUsedId;
         this.props.onSetAddingMode()
     };
-    addingElement = (id, name, img, price, quantity, category) => {
-        this.props.onAddingElement(id, name, img, price, quantity, category)
+    addingElement = (id, name, img, price, quantity, category, description) => {
+        this.props.onAddingElement(id, name, img, price, quantity, category, description)
     };
 
     render() {
-        let categoryData =[...this.props.store.shopData].filter(
+        let categoryData = [...this.props.store.shopData].filter(
             (data) => {
 
-                return data.category=== this.props.match.params.category
+                return data.category === this.props.match.params.category
             }
         );
 
         let rowTable = categoryData.map(
             (data) => {
-                if ((this.props.store.selectedProductCode === data.id && this.props.store.workMode === 1) || (this.props.store.selectedProductCode === data.id && this.props.store.workMode === 2)) {
+                if ((this.props.store.selectedProductCode === data.id && this.props.store.workMode === 1)) {
                     return (
 
-                        <div className='rowWrapper selected' key={data.id}>
-                            <ProductRow name={data.name} select={this.selectingElement}
+
+                        <div className='rowWrapper col-md-8 selected' key={data.id}>
+                            <ProductRow name={data.name} quantity={data.quantity} img={data.img} price={data.price}
+                                        select={this.selectingElement} cancel={this.cancelEditMode}
                                         delete={this.deletingElement}
-                                        edit={this.editElement} id={data.id}/>
+                                        edit={this.editElement} id={data.id}
+                                        save={this.saveEditedElement}
+                            />
                             <ProductCard key={data.id} id={data.id} name={data.name} quantity={data.quantity}
                                          img={data.img} price={data.price} workMode={this.props.store.workMode}
                                          cancel={this.cancelEditMode} save={this.saveEditedElement}
-                                         add={this.addingElement}/>
+                                         add={this.addingElement} description={data.description}/>
                         </div>
+
+
                     )
+                }
+                if (this.props.store.selectedProductCode === data.id && this.props.store.workMode === 2) {
+                    return (
+                        <ProductCard key={data.id} id={data.id} name={data.name} quantity={data.quantity}
+                                     img={data.img} price={data.price} workMode={this.props.store.workMode}
+                                     cancel={this.cancelEditMode} save={this.saveEditedElement}
+                                     add={this.addingElement} description={data.description}/>
+                    )
+
                 }
                 else {
                     return (
-                        <div className='rowWrapper' key={data.id}>
-                            <ProductRow name={data.name} select={this.selectingElement} delete={this.deletingElement}
+
+
+                        <div className='rowWrapper col-md-8' key={data.id}>
+                            <ProductRow name={data.name} select={this.selectingElement}
+                                        delete={this.deletingElement}
                                         edit={this.editElement} id={data.id}/>
                         </div>
+
+
                     )
                 }
             }
         );
         if (this.props.store.workMode !== 3) {
             return (
-                <div className='table'>
-                    {rowTable}
-                    <button className="formCreateAdd"
-                            onClick={this.setAddingMode}> Добавить
-                    </button>
+                <div className='container'>
+                    <div className='row'>
+                        {rowTable}
+                    </div>
+                    <div className="row">
+                        <button className="formCreateAdd offset-md-2"
+                                onClick={this.setAddingMode}><FontAwesome
+                            name="plus"
+                            style={{
+                                fontSize: '20px',
+                                color: '#ffffff',
+                                position: 'absolute',
+                                top: '18px',
+                                left: '35px',
+                                cursor: 'pointer'
+                            }}
+                        /> <span className='add'>Добавить</span>
+                        </button>
+                    </div>
                 </div>
             )
         } else {
             return (
-                <div className='table'>
-                    {rowTable}
-                    <ProductCard key={this.lastUsedId}
-                                 id={this.lastUsedId}
-                                 category={this.props.match.params.category}
-                                 quantity={0} name={''} price={''} img={''}
-                                 add={this.addingElement}
-                                 workMode={this.props.store.workMode}
-                                 cancel={this.cancelEditMode} save={this.saveEditedElement}/>
-                    <button className="formCreateAdd"
-                            onClick={this.setAddingMode}> Добавить
-                    </button>
+                <div className='container'>
+                    <div className='row'>
+                        {rowTable}
+
+                    </div>
+                    <div className="row">
+                        <ProductCard key={this.lastUsedId}
+                                     id={this.lastUsedId}
+                                     category={this.props.match.params.category}
+                                     quantity={0} name={''} price={''} img={''} description={''}
+                                     add={this.addingElement}
+                                     workMode={this.props.store.workMode}
+                                     cancel={this.cancelEditMode} save={this.saveEditedElement}/>
+
+                    </div>
                 </div>
             )
         }
@@ -104,7 +141,7 @@ class ProductsGrid extends PureComponent {
 }
 
 
-export default withRouter(connect(
+export default connect(
     (state) => ({store: state}),
 
     (dispatch) => ({
@@ -122,18 +159,36 @@ export default withRouter(connect(
         onCancelEditingMode: () => {
             dispatch({type: 'DEFAULT_WORK_MODE'})
         },
-        onSaveEditedElement: (id, name, img, price, quantity) => {
-            dispatch({type: 'SAVE_EDIT_ROW', id: id, name: name, img: img, price: price, quantity: quantity});
+        onSaveEditedElement: (id, name, img, price, quantity, description) => {
+            dispatch({
+                type: 'SAVE_EDIT_ROW',
+                id: id,
+                name: name,
+                img: img,
+                price: price,
+                quantity: quantity,
+                description: description
+            });
             dispatch({type: 'DEFAULT_WORK_MODE'})
         },
         onSetAddingMode: () => {
             dispatch({type: 'ADD_WORK_MODE'})
         },
-        onAddingElement: (id, name, img, price, quantity, category) => {
-            dispatch({type: 'ADD_ROW', id: id, name: name, img: img, price: price, quantity: quantity, category:category});
+        onAddingElement: (id, name, img, price, quantity, category, description) => {
+            dispatch({
+                type: 'ADD_ROW',
+                id: id,
+                name: name,
+                img: img,
+                price: price,
+                quantity: quantity,
+                category: category,
+                description: description
+
+            });
             dispatch({type: 'DEFAULT_WORK_MODE'})
 
         }
 
     })
-)(ProductsGrid))
+)(ProductsGrid)

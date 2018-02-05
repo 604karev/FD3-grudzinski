@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="element"
+  onClick={[Function]}
+>
+  <span
+    className="elementName"
+  >
+    
+  </span>
+  <span
+    className="elementEdit"
+    onClick={[Function]}
+  >
+    <span
+      aria-hidden={true}
+      className="fa fa-pencil"
+      style={
+        Object {
+          "color": "#0063ec",
+          "cursor": "pointer",
+          "fontSize": "24px",
+          "padding": "0 10px",
+        }
+      }
+    />
+  </span>
+  <span
+    className="elementRemove"
+    onClick={[Function]}
+  >
+    <span
+      aria-hidden={true}
+      className="fa fa-trash"
+      style={
+        Object {
+          "color": "#0063ec",
+          "cursor": "pointer",
+          "fontSize": "24px",
+          "padding": "0 10px",
+        }
+      }
+    />
+  </span>
+</div>
+`;

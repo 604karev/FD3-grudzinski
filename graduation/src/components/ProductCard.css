@@ -1,19 +1,126 @@
-.elementCard img{
+.elementCard {
+    text-align: left;
+    padding: 15px 10px;
+}
+
+.imageBorder {
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: solid 2px #f0f3f7;
+    padding: 10px;
+}
+
+.elementName:hover, .fa:hover {
+    color: #00a2ff !important;
+    transition: color .5s ease;
+}
+
+.formCreateAdd:hover {
+    background-color: #00a2ff;
+    transition: background-color .5s ease;
+}
+
+.formCreateAdd {
+    transition: background-color .5s ease;
+}
+
+.element .elementName, .fa {
+    transition: color .5s ease;
+}
+.fa.fa-image:hover, .fa.fa-link:hover{
+    color: #f0f3f7 !important;
+}
+
+.formEditInformation .imageBorder {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+input, textarea {
+    border: solid 2px #f0f3f7;
+    padding: 5px;
+    color: #454d58;;
+}
+
+.elementCard img {
     width: 100%;
     height: auto;
 }
-.formEdit{
-    text-align: left;
-    padding: 10px;
+
+.formEdit .formEditImage, .formEdit #formEditImage, .formEdit #formEditPrice, .formEdit #formEditQuantity, .formEdit #formEditDescription, .formEdit #formCreateDescription {
+    width: 100%;
 }
-.formEdit label{
+
+.formEdit #formEditImage {
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    padding-left: 35px;
+
+}
+
+.formEdit label[for=formEditImage] {
+    position: absolute;
+}
+
+.formEdit .formEditInformation {
+    padding: 20px 10px;
+}
+
+.elementCardDescription {
+    margin-top: 10px;
+}
+
+.formEdit #formEditName {
+    max-width: 380px;
+}
+
+.formEdit label[for=formEditDescription] {
+    margin-top: 19px;
+}
+
+.formEdit label[for=formCreateDescription] {
+    margin-top: 10px;
+}
+
+.formEdit {
+    text-align: left;
+    padding: 20px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 7px 0 rgba(29, 54, 79, 0.08);
+    margin: 10px auto;
+}
+
+.formEdit label {
     width: 300px;
     display: inline-block;
 }
-.formEditRow .formEditCancel{
-    margin-right: 10px;
+
+.App .formCreate {
+    margin: 10px auto;
+    text-align: left;
+    padding-left: 0;
 }
 
-.formEditRow button{
-    padding: 5px;
+.formCreateRow, .formEditRow {
+    display: flex;
+    align-items: flex-start;
+}
+
+.formCreate .formCreateRow input {
+    flex: 0 0 0;
+}
+
+.formCreate .formCreateRow label, .formEdit .formEditRow .formEditName {
+    flex: 1 1 0;
+}
+
+.formEdit .formEditRow .formEditName {
+    padding-left: 10px;
+}
+
+@media (min-width: 768px) {
+    #formEditName {
+        max-width: 380px;
+    }
 }

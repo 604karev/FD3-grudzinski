@@ -1,12 +1,22 @@
 .element {
-    padding: 10px;
     text-align: left;
+    display: flex;
+
 }
 .element button{
-    float: right;
+    flex: 0 0 0;
+    align-self: center;
+}
+.element .elementName{
+    flex: 1 1 0;
+    display: block;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: #0063ec;
+    cursor: pointer;
+
 }
 
-.rowWrapper {
-    border: 1px solid black;
-    margin: 10px;
-}

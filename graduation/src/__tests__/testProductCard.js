@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 
 it('renders correctly', () => {
     const tree = renderer
-        .create(<ProductRow id={''} name=""/>)
+        .create(<ProductRow id={''} name="" delete={''} edit={''} select={''}/>)
         .toJSON();
     expect(tree).toMatchSnapshot();
 });

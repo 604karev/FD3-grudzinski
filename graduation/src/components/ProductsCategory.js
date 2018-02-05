@@ -1,18 +1,28 @@
 import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Route} from 'react-router-dom';
+import './ProductsCategory.css';
+import ProductsGrid from './ProductsGrid';
 
 
 class ProductsCategory extends Component {
 
     render() {
         return (
-            <div>
-                <NavLink to="/" className="PageLink" activeClassName="ActivePageLink">Категории</NavLink>
+            <div className="App">
+                <div className='container'>
+                    <div className="row">
+                        <div className=" nav">
+                            <NavLink to="/motherboard" className="pageLink btn " activeClassName="active">Материнские
+                                платы</NavLink>
+                            <NavLink to="/processors" className="pageLink btn "
+                                     activeClassName=" active">Процессоры</NavLink>
+                            <NavLink to="/videoCard" className="pageLink btn "
+                                     activeClassName="active">Видеокарты</NavLink>
 
-                <NavLink to="/motherboard" className="PageLink" activeClassName="ActivePageLink">Материнские
-                    платы</NavLink>
-                <NavLink to="/processors"  className="PageLink" activeClassName="ActivePageLink">Процессоры</NavLink>
-                <NavLink to="/videoCard" className="PageLink" activeClassName="ActivePageLink">Видеокарты</NavLink>
+                        </div>
+                    </div>
+                </div>
+                <Route path="/:category" component={ProductsGrid}/>
             </div>
 
         );

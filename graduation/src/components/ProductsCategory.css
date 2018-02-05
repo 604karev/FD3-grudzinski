@@ -1,0 +1,26 @@
+.nav {
+
+    margin: 30px auto;
+    justify-content: center;
+    border-radius: 32px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 15px 0 rgba(29, 54, 79, 0.17);
+
+}
+.nav .pageLink.btn, .nav .pageLink.btn:focus{
+    border: none;
+    box-shadow: none;
+}
+.nav .pageLink.btn{
+    padding: 10px 25px;
+}
+
+.nav .pageLink.btn.active {
+    color: #ffffff;
+    border-radius: 32px;
+    background-image: linear-gradient(to bottom, #2db7ff, #1d77f3);
+    background-blend-mode: color-dodge, normal;
+
+
+
+}
