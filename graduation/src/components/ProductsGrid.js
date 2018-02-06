@@ -10,7 +10,8 @@ class ProductsGrid extends PureComponent {
 
     lastUsedId = this.props.store.shopData.reduce((prev, cur) => cur.id > prev.id ? cur : prev, {id: 0}).id;
 
-    selectingElement = (id) => {
+    selectingElement = (id, e) => {
+        e.stopPropagation();
         this.props.onChangeWorkMode(id)
     };
 
@@ -55,11 +56,10 @@ class ProductsGrid extends PureComponent {
 
 
                         <div className='rowWrapper col-md-8 selected' key={data.id}>
-                            <ProductRow name={data.name} quantity={data.quantity} img={data.img} price={data.price}
-                                        select={this.selectingElement} cancel={this.cancelEditMode}
+                            <ProductRow name={data.name} select={this.selectingElement}
                                         delete={this.deletingElement}
                                         edit={this.editElement} id={data.id}
-                                        save={this.saveEditedElement}
+                                        workMode={this.props.store.workMode}
                             />
                             <ProductCard key={data.id} id={data.id} name={data.name} quantity={data.quantity}
                                          img={data.img} price={data.price} workMode={this.props.store.workMode}
@@ -81,12 +81,12 @@ class ProductsGrid extends PureComponent {
                 }
                 else {
                     return (
-
-
                         <div className='rowWrapper col-md-8' key={data.id}>
                             <ProductRow name={data.name} select={this.selectingElement}
                                         delete={this.deletingElement}
-                                        edit={this.editElement} id={data.id}/>
+                                        edit={this.editElement} id={data.id}
+                                        workMode={this.props.store.workMode}
+                            />
                         </div>
 
 

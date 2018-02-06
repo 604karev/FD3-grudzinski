@@ -15,7 +15,7 @@
 
 }
 .rowWrapper:not(.selected) {
-    height: 80px;
+    height: 70px;
     transition: height .5s ease
 }
 

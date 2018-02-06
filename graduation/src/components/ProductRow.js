@@ -18,21 +18,36 @@ class ProductRow extends PureComponent {
     render() {
         console.log("ProductRow render");
         return (
+            this.props.workMode === 1 || this.props.workMode === 0 ?
+                <div className='element' onClick={(e) => this.props.select(this.props.id, e)}>
+                    <span className='elementName'>{this.props.name}</span>
+                    <span className='elementEdit' onClick={(e) => this.props.edit(this.props.id, e)}>
+                        <FontAwesome
+                            name="pencil"
+                            style={{fontSize: '24px', color: '#0063ec', padding: '0 10px', cursor: 'pointer'}}/>
+                    </span>
 
-            <div className='element' onClick={(e) => this.props.select(this.props.id)}>
-                <span className='elementName'>{this.props.name}</span>
-                <button className='elementEdit' onClick={(e) => this.props.edit(this.props.id, e)}>
-                    <FontAwesome
-                        name="pencil"
-                        style={{fontSize: '24px', color: '#0063ec', padding: '0 10px', cursor:'pointer'}}/></button>
+                    <span className='elementRemove' onClick={(e) => this.props.delete(this.props.id, e)}>
+                        <FontAwesome
+                            name="trash"
+                            style={{fontSize: '24px', color: '#0063ec', padding: '0 10px', cursor: 'pointer'}}
+                        /></span>
+                </div>
+                :
+                <div className='element'>
+                    <span className='elementName'>{this.props.name}</span>
+                    <span className='elementEdit'>
+                        <FontAwesome
+                            name="pencil"
+                            style={{fontSize: '24px', color: '#0063ec', padding: '0 10px', cursor: 'pointer'}}/>
+                    </span>
+                    <span className='elementRemove'>
+                        <FontAwesome
+                            name="trash"
+                            style={{fontSize: '24px', color: '#0063ec', padding: '0 10px', cursor: 'pointer'}}
+                        /></span>
+                </div>
 
-                <button className='elementRemove' onClick={(e) => this.props.delete(this.props.id, e)}>
-                    <FontAwesome
-                        name="trash"
-                        style={{fontSize: '24px', color: '#0063ec', padding: '0 10px', cursor:'pointer'}}
-                    /></button>
-
-            </div>
         )
     }
 }
