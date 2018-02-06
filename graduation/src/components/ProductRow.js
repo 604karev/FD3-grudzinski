@@ -21,16 +21,16 @@ class ProductRow extends PureComponent {
 
             <div className='element' onClick={(e) => this.props.select(this.props.id)}>
                 <span className='elementName'>{this.props.name}</span>
-                <span className='elementEdit' onClick={(e) => this.props.edit(this.props.id, e)}>
+                <button className='elementEdit' onClick={(e) => this.props.edit(this.props.id, e)}>
                     <FontAwesome
                         name="pencil"
-                        style={{fontSize: '24px', color: '#0063ec', padding: '0 10px', cursor:'pointer'}}/></span>
+                        style={{fontSize: '24px', color: '#0063ec', padding: '0 10px', cursor:'pointer'}}/></button>
 
-                <span className='elementRemove' onClick={(e) => this.props.delete(this.props.id, e)}>
+                <button className='elementRemove' onClick={(e) => this.props.delete(this.props.id, e)}>
                     <FontAwesome
                         name="trash"
                         style={{fontSize: '24px', color: '#0063ec', padding: '0 10px', cursor:'pointer'}}
-                    /></span>
+                    /></button>
 
             </div>
         )

@@ -100,7 +100,7 @@ class ProductCard extends PureComponent {
                     <div className='col-sm-8'>
                         <div className='row'>
                             <div className='col-sm-6'>
-                                <div className='elementCardQuantity'><b>Колличество: </b>{this.props.quantity}</div>
+                                <div className='elementCardQuantity'><b>Количество: </b>{this.props.quantity}</div>
                             </div>
                             <div className='col-sm-6'>
                                 <div className='elementCardPrice'><b>Цена: </b>{this.props.price}</div>
@@ -162,7 +162,7 @@ class ProductCard extends PureComponent {
                         <div className='col-sm-8'>
                             <div className='row'>
                                 <div className='col-sm-4'>
-                                    <label htmlFor="formEditQuantity"><b>Колличество:</b></label>
+                                    <label htmlFor="formEditQuantity"><b>Количество:</b></label>
                                     <input id='formEditQuantity' name=' formEditQuantity' type="number"
                                            defaultValue={this.props.quantity}
                                            ref={this.setNewQuantityRef}/>
@@ -237,7 +237,7 @@ class ProductCard extends PureComponent {
                         <div className='col-sm-8'>
                             <div className='row'>
                                 <div className='col-sm-4'>
-                                    <label htmlFor="formEditQuantity"><b>Колличество:</b></label>
+                                    <label htmlFor="formEditQuantity"><b>Количество:</b></label>
                                     <input id='formEditQuantity' name=' formEditQuantity' type="number" placeholder="Количество"
                                            defaultValue={this.props.quantity}
                                            ref={this.setNewQuantityRef}/>

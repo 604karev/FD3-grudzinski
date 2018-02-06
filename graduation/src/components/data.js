@@ -7,9 +7,6 @@ const geForceGTX1060GamingX6GBGDDR5 = require('../img/MSI GeForce GTX 1060 Gamin
 const intelCorei38100 = require('../img/Intel Core i3-8100.jpeg');
 const intelCorei58400 = require('../img/Intel Core i5-8400.jpeg');
 const intelCorei78700K = require('../img/Intel Core i7-8700K.jpeg');
-
-
-
 const shopData = [
 
     {
@@ -152,45 +149,3 @@ const shopData = [
 ];
 
 
-export default function internetShop(state = shopData, action) {
-    if (action.type === 'ADD_ROW') {
-        return [
-            ...state, {
-                id: action.id,
-                name: action.name,
-                img: action.img,
-                price: action.price,
-                quantity: action.quantity,
-                category: action.category,
-                description: action.description
-
-            }
-        ]
-
-    } else if (action.type === 'REMOVE_ROW') {
-        return [
-            ...state.filter(
-                (data) => {
-                    return data.id !== action.id
-                })
-
-        ];
-    } else if (action.type === 'SAVE_EDIT_ROW') {
-        return [
-            ...state.map(
-                (data) => {
-                    if (data.id === action.id) {
-                        data.name = action.name;
-                        data.quantity = action.quantity;
-                        data.img = action.img;
-                        data.price = action.price;
-                        data.description = action.description
-                    }
-                    return data;
-                })
-
-
-        ];
-    }
-    return state
-}

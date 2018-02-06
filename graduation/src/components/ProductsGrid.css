@@ -14,6 +14,16 @@
     box-shadow: 0 4px 7px 0 rgba(29, 54, 79, 0.08);
 
 }
+.rowWrapper:not(.selected) {
+    height: 80px;
+    transition: height .5s ease
+}
+
+.rowWrapper.selected{
+    height: 500px;
+    transition: height .5s ease
+}
+
 .formCreateAdd{
     margin-top: 10px;
     font-family: Roboto, sans-serif;
