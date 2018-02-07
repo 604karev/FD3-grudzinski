@@ -134,7 +134,7 @@ class ProductsGrid extends PureComponent {
                 }
             }
         );
-        if (this.props.store.workMode !== 3) {
+        if (this.props.store.workMode === 1 || this.props.store.workMode === 0) {
             return (
                 <div className='container'>
                     <div className='row'>
@@ -143,6 +143,28 @@ class ProductsGrid extends PureComponent {
                     <div className="row">
                         <button className="formCreateAdd offset-md-2"
                                 onClick={this.setAddingMode}><FontAwesome
+                            name="plus"
+                            style={{
+                                fontSize: '20px',
+                                color: '#ffffff',
+                                position: 'absolute',
+                                top: '18px',
+                                left: '35px',
+                                cursor: 'pointer'
+                            }}
+                        /> <span className='add'>Добавить</span>
+                        </button>
+                    </div>
+                </div>
+            )
+        } else if (this.props.store.workMode === 2) {
+            return (
+                <div className='container'>
+                    <div className='row'>
+                        {rowTable}
+                    </div>
+                    <div className="row">
+                        <button className="formCreateAdd offset-md-2"><FontAwesome
                             name="plus"
                             style={{
                                 fontSize: '20px',
