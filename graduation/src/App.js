@@ -5,9 +5,9 @@ import {BrowserRouter} from 'react-router-dom';
 import './App.css';
 import ProductsCategory from "./components/ProductsCategory";
 import {createStore} from 'redux';
-import DataLoader from './components/DataLoader'
 
-DataLoader();
+
+
 
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 

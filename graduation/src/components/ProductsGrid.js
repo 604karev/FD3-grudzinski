@@ -4,9 +4,14 @@ import ProductRow from "./ProductRow";
 import ProductCard from './ProductCard';
 import {connect} from 'react-redux';
 import FontAwesome from 'react-fontawesome';
+import {default as isoFetch} from 'isomorphic-fetch';
 
 
 class ProductsGrid extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.loadData();
+    }
 
     lastUsedId = this.props.store.shopData.reduce((prev, cur) => cur.id > prev.id ? cur : prev, {id: 0}).id;
 
@@ -40,6 +45,40 @@ class ProductsGrid extends PureComponent {
     addingElement = (id, name, img, price, quantity, category, description) => {
         this.props.onAddingElement(id, name, img, price, quantity, category, description)
     };
+    fetchSuccess = (data) => {
+        this.props.onLoadData(data)
+    };
+
+    loadData = () => {
+        isoFetch("/data.json", {
+            method: 'get',
+            headers: {
+                "Accept": "application/json",
+            },
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    let Err = new Error("fetch error " + response.status);
+                    Err.userMessage = "Ошибка связи";
+                    throw Err;
+                }
+                else
+                    return response.json();
+            })
+            .then((data) => {
+                try {
+                    this.fetchSuccess(data);
+                }
+                catch (error) {
+                    console.log(error.message);
+                }
+            })
+            .catch((error) => {
+                this.fetchError(error.userMessage || error.message);
+            })
+        ;
+
+    };
 
     render() {
         let categoryData = [...this.props.store.shopData].filter(
@@ -61,6 +100,7 @@ class ProductsGrid extends PureComponent {
                                         edit={this.editElement} id={data.id}
                                         workMode={this.props.store.workMode}
                             />
+
                             <ProductCard key={data.id} id={data.id} name={data.name} quantity={data.quantity}
                                          img={data.img} price={data.price} workMode={this.props.store.workMode}
                                          cancel={this.cancelEditMode} save={this.saveEditedElement}
@@ -145,6 +185,9 @@ export default connect(
     (state) => ({store: state}),
 
     (dispatch) => ({
+        onLoadData: (data) => {
+            dispatch({type: 'LOAD_DATA', data: data})
+        },
         onChangeWorkMode: (id) => {
             dispatch({type: 'SELECTED_PRODUCT', id: id});
             dispatch({type: 'READ_WORK_MODE'})

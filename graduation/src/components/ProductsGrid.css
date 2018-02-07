@@ -3,29 +3,34 @@
     margin: auto;
     text-align: left;
 }
-.selected{
+
+.selected {
     background-color: red;
 }
+
 .rowWrapper {
-    overflow-x: hidden;
     margin: 10px auto;
     padding: 20px;
     border-radius: 4px;
     background-color: #ffffff;
     box-shadow: 0 4px 7px 0 rgba(29, 54, 79, 0.08);
-
+    box-sizing: border-box;
 }
+
 .rowWrapper:not(.selected) {
+    transition: all .5s ease;
+    overflow: hidden;
     height: 70px;
-    transition: height .5s ease
 }
 
-.rowWrapper.selected{
-    height: 350px;
-    transition: height .5s ease
+.rowWrapper.selected {
+    overflow-y: auto;
+    height: 450px;
+    border-left: 1px solid rgb(204, 204, 204);
+    transition: all .5s ease;
 }
 
-.formCreateAdd{
+.formCreateAdd {
     margin-top: 10px;
     font-family: Roboto, sans-serif;
     font-size: 18px;
@@ -40,6 +45,7 @@
     cursor: pointer;
     border-radius: 4px;
 }
-.formCreateAdd .add{
+
+.formCreateAdd .add {
     padding-left: 20px;
 }
