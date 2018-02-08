@@ -49,6 +49,7 @@ class ProductsGrid extends PureComponent {
         this.props.onLoadData(data)
     };
 
+
     loadData = () => {
         isoFetch("/data.json", {
             method: 'get',
@@ -79,8 +80,27 @@ class ProductsGrid extends PureComponent {
         ;
 
     };
+    detectTheEnd = (e) => {
+        if (e.propertyName === "height") {
+            if (e.target.querySelector('.elementCard')) {
+                e.target.querySelector('.elementCard').style.display = 'flex'
+            }
+
+        }
+
+    };
 
     render() {
+        let row = document.querySelectorAll('.rowWrapper');
+        if (row) {
+            row.forEach(
+                (data) => {
+                    data.addEventListener("transitionend", this.detectTheEnd, false);
+                }
+            )
+        }
+
+
         let categoryData = [...this.props.store.shopData].filter(
             (data) => {
 

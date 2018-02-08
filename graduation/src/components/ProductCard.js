@@ -194,7 +194,8 @@ class ProductCard extends PureComponent {
                 <div className='formEdit col-md-8'>
                     <div className='formEditRow'>
                         <div className='formEditName'>
-                            <input className='col-md-6' id='formEditName' name=' formEditName' type="text" placeholder="Введите имя"
+                            <input className='col-md-6' id='formEditName' name=' formEditName' type="text"
+                                   placeholder="Введите имя"
                                    defaultValue={this.props.name}
                                    ref={this.setNewNameRef}/>
                         </div>
@@ -238,7 +239,8 @@ class ProductCard extends PureComponent {
                             <div className='row'>
                                 <div className='col-sm-4'>
                                     <label htmlFor="formEditQuantity"><b>Количество:</b></label>
-                                    <input id='formEditQuantity' name=' formEditQuantity' type="number" placeholder="Количество"
+                                    <input id='formEditQuantity' name=' formEditQuantity' type="number"
+                                           placeholder="Количество"
                                            defaultValue={this.props.quantity}
                                            ref={this.setNewQuantityRef}/>
                                 </div>
@@ -252,7 +254,8 @@ class ProductCard extends PureComponent {
                             <div className='row'>
                                 <div className='col-sm-12'>
                                     <label htmlFor="formCreateDescription"><b>Описание:</b></label>
-                                    <textarea name="formCreateDescription" id="formCreateDescription" cols="30" placeholder="Опишите продукт"
+                                    <textarea name="formCreateDescription" id="formCreateDescription" cols="30"
+                                              placeholder="Опишите продукт"
                                               rows="5" defaultValue={this.props.description}
                                               ref={this.setNewDescriptionRef}>
                                 </textarea>

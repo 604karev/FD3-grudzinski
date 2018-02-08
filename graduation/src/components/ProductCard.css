@@ -1,6 +1,8 @@
 .elementCard {
     text-align: left;
     padding: 15px 10px;
+    display: none;
+
 }
 
 .imageBorder {
