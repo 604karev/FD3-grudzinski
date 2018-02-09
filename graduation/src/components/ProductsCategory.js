@@ -18,7 +18,6 @@ class ProductsCategory extends Component {
                                      activeClassName=" active">Процессоры</NavLink>
                             <NavLink to="/videoCard" className="pageLink btn "
                                      activeClassName="active">Видеокарты</NavLink>
-
                         </div>
                     </div>
                 </div>

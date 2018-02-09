@@ -6,9 +6,6 @@ import './App.css';
 import ProductsCategory from "./components/ProductsCategory";
 import {createStore} from 'redux';
 
-
-
-
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 class App extends Component {

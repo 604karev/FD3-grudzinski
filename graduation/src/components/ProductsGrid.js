@@ -13,8 +13,6 @@ class ProductsGrid extends PureComponent {
         this.loadData();
     }
 
-    lastUsedId = this.props.store.shopData.reduce((prev, cur) => cur.id > prev.id ? cur : prev, {id: 0}).id;
-
     selectingElement = (id, e) => {
         e.stopPropagation();
         this.props.onChangeWorkMode(id)
@@ -25,6 +23,7 @@ class ProductsGrid extends PureComponent {
         this.props.onDeleteElement(id)
 
     };
+
     editElement = (id, e) => {
         e.stopPropagation();
         this.props.onChangeEditMode(id);
@@ -42,13 +41,14 @@ class ProductsGrid extends PureComponent {
         ++this.lastUsedId;
         this.props.onSetAddingMode()
     };
+
     addingElement = (id, name, img, price, quantity, category, description) => {
         this.props.onAddingElement(id, name, img, price, quantity, category, description)
     };
+
     fetchSuccess = (data) => {
         this.props.onLoadData(data)
     };
-
 
     loadData = () => {
         isoFetch("/data.json", {
@@ -69,6 +69,8 @@ class ProductsGrid extends PureComponent {
             .then((data) => {
                 try {
                     this.fetchSuccess(data);
+                    this.lastUsedId = data.reduce((prev, cur) => cur.id > prev.id ? cur : prev, {id: 0}).id;
+
                 }
                 catch (error) {
                     console.log(error.message);
@@ -76,26 +78,26 @@ class ProductsGrid extends PureComponent {
             })
             .catch((error) => {
                 this.fetchError(error.userMessage || error.message);
-            })
-        ;
-
+            });
     };
     detectTheEnd = (e) => {
         if (e.propertyName === "height") {
             if (e.target.querySelector('.elementCard')) {
                 e.target.querySelector('.elementCard').style.display = 'flex'
             }
-
         }
-
     };
+
 
     render() {
         let row = document.querySelectorAll('.rowWrapper');
+
         if (row) {
             row.forEach(
                 (data) => {
                     data.addEventListener("transitionend", this.detectTheEnd, false);
+
+
                 }
             )
         }
@@ -112,22 +114,16 @@ class ProductsGrid extends PureComponent {
             (data) => {
                 if ((this.props.store.selectedProductCode === data.id && this.props.store.workMode === 1)) {
                     return (
-
-
                         <div className='rowWrapper col-md-8 selected' key={data.id}>
                             <ProductRow name={data.name} select={this.selectingElement}
                                         delete={this.deletingElement}
                                         edit={this.editElement} id={data.id}
-                                        workMode={this.props.store.workMode}
-                            />
-
+                                        workMode={this.props.store.workMode}/>
                             <ProductCard key={data.id} id={data.id} name={data.name} quantity={data.quantity}
                                          img={data.img} price={data.price} workMode={this.props.store.workMode}
                                          cancel={this.cancelEditMode} save={this.saveEditedElement}
                                          add={this.addingElement} description={data.description}/>
                         </div>
-
-
                     )
                 }
                 if (this.props.store.selectedProductCode === data.id && this.props.store.workMode === 2) {
@@ -137,7 +133,6 @@ class ProductsGrid extends PureComponent {
                                      cancel={this.cancelEditMode} save={this.saveEditedElement}
                                      add={this.addingElement} description={data.description}/>
                     )
-
                 }
                 else {
                     return (
@@ -148,8 +143,6 @@ class ProductsGrid extends PureComponent {
                                         workMode={this.props.store.workMode}
                             />
                         </div>
-
-
                     )
                 }
             }
@@ -222,7 +215,6 @@ class ProductsGrid extends PureComponent {
     }
 }
 
-
 export default connect(
     (state) => ({store: state}),
 
@@ -269,11 +261,8 @@ export default connect(
                 quantity: quantity,
                 category: category,
                 description: description
-
             });
             dispatch({type: 'DEFAULT_WORK_MODE'})
-
         }
-
     })
 )(ProductsGrid)

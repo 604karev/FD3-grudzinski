@@ -25,9 +25,11 @@
 
 .rowWrapper.selected {
     overflow-y: auto;
-    height: 450px;
-    transition: all .5s ease;
+    height: 370px;
+    transition: height .5s ease;
 }
+
+
 
 .formCreateAdd {
     margin-top: 10px;

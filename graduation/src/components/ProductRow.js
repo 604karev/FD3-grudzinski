@@ -1,19 +1,17 @@
 import React, {PureComponent} from 'react';
 import './ProductRow.css'
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-
 
 class ProductRow extends PureComponent {
 
-    // static propTypes = {
-    //     id: PropTypes.number.isRequired,
-    //     name: PropTypes.string.isRequired,
-    //     select: PropTypes.func.isRequired,
-    //     delete: PropTypes.func.isRequired,
-    //     edit: PropTypes.func.isRequired,
-    // };
-
+    static propTypes = {
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        select: PropTypes.func.isRequired,
+        delete: PropTypes.func.isRequired,
+        edit: PropTypes.func.isRequired,
+    };
 
     render() {
         console.log("ProductRow render");

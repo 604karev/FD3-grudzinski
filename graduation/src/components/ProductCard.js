@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './ProductCard.css';
 import FontAwesome from 'react-fontawesome';
 
-
 class ProductCard extends PureComponent {
 
     static propTypes = {
@@ -12,64 +11,37 @@ class ProductCard extends PureComponent {
         price: PropTypes.string.isRequired,
         img: PropTypes.string.isRequired,
         quantity: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
         workMode: PropTypes.number.isRequired,
         cancel: PropTypes.func.isRequired,
         save: PropTypes.func.isRequired,
         add: PropTypes.func.isRequired,
-    };
 
-    newNameRef = null;
-    newImgRef = null;
-    newQuantityRef = null;
-    newPriceRef = null;
-    newDescriptionRef = null;
-
-    setNewNameRef = (ref) => {
-        this.newNameRef = ref;
-    };
-    setNewImgRef = (ref) => {
-        this.newImgRef = ref;
-    };
-    setNewQuantityRef = (ref) => {
-        this.newQuantityRef = ref;
-    };
-    setNewPriceRef = (ref) => {
-        this.newPriceRef = ref;
-    };
-    setNewDescriptionRef = (ref) => {
-        this.newDescriptionRef = ref
     };
 
     checkValidation = () => {
-
         let newName = this.newNameRef.value;
         let newImg = this.newImgRef.value;
         let newPrice = this.newPriceRef.value;
         let newQuantity = this.newQuantityRef.value;
-
         if (newName.split('').length === 0) {
             alert('Поле Имя не должно быть путым');
             return false
-
         }
         if (newImg.split('').length === 0) {
             alert('Поле изображение не должно быть путым');
             return false
-
         }
         if (newPrice.split('').length === 0) {
             alert('Поле цена не должно быть путым');
             return false
-
         }
         if (newQuantity.toString().split('').length === 0) {
             alert('Поле количество не должно быть путым');
             return false
-
         }
         else return true
     };
-
 
     submitFormValidation = () => {
 
@@ -80,7 +52,6 @@ class ProductCard extends PureComponent {
             this.props.add(this.props.id, this.newNameRef.value, this.newImgRef.value, this.newPriceRef.value, this.newQuantityRef.valueAsNumber, this.props.category, this.newDescriptionRef.value)
         }
     };
-
 
     render() {
         console.log("ProductCard render");
@@ -94,9 +65,7 @@ class ProductCard extends PureComponent {
                         <div className='imageBorder'>
                             <img src={this.props.img} alt={this.props.name}/>
                         </div>
-
                     </div>
-
                     <div className='col-sm-8'>
                         <div className='row'>
                             <div className='col-sm-6'>
@@ -113,7 +82,6 @@ class ProductCard extends PureComponent {
                             </div>
                         </div>
                     </div>
-
                 </div>
             )
         }
@@ -124,7 +92,7 @@ class ProductCard extends PureComponent {
                         <div className='formEditName'>
                             <input className='col-md-6' id='formEditName' name=' formEditName' type="text"
                                    defaultValue={this.props.name}
-                                   ref={this.setNewNameRef}/>
+                                   ref={(input) => this.newNameRef = input}/>
                         </div>
                         <span className="formEditSave" onClick={this.submitFormValidation}>
                             <FontAwesome
@@ -135,7 +103,6 @@ class ProductCard extends PureComponent {
                             name="ban"
                             style={{fontSize: '24px', color: '#0063ec', padding: '0 10px', cursor: 'pointer'}}/>
                         </span>
-
                     </div>
                     <div className='row formEditInformation'>
                         <div className='col-sm-4'>
@@ -155,9 +122,7 @@ class ProductCard extends PureComponent {
                             </label>
                             <input id='formEditImage' name=' formEditImage' type="text"
                                    defaultValue={this.props.img}
-                                   ref={this.setNewImgRef}/>
-
-
+                                   ref={(input) => this.newImgRef = input}/>
                         </div>
                         <div className='col-sm-8'>
                             <div className='row'>
@@ -165,13 +130,13 @@ class ProductCard extends PureComponent {
                                     <label htmlFor="formEditQuantity"><b>Количество:</b></label>
                                     <input id='formEditQuantity' name=' formEditQuantity' type="number"
                                            defaultValue={this.props.quantity}
-                                           ref={this.setNewQuantityRef}/>
+                                           ref={(input) => this.newQuantityRef = input}/>
                                 </div>
                                 <div className='col-sm-4'>
                                     <label htmlFor="formEditPrice"><b>Цена:</b></label>
                                     <input id='formEditPrice' name=' formEditPrice' type="text"
                                            defaultValue={this.props.price}
-                                           ref={this.setNewPriceRef}/>
+                                           ref={(input) => this.newPriceRef = input}/>
                                 </div>
                             </div>
                             <div className='row'>
@@ -179,7 +144,7 @@ class ProductCard extends PureComponent {
                                     <label htmlFor="formEditDescription"><b>Описание:</b></label>
                                     <textarea name="formEditDescription" id="formEditDescription" cols="30"
                                               rows="7" defaultValue={this.props.description}
-                                              ref={this.setNewDescriptionRef}>
+                                              ref={(input) => this.newDescriptionRef = input}>
                                 </textarea>
                                 </div>
                             </div>
@@ -190,14 +155,13 @@ class ProductCard extends PureComponent {
         }
         if (this.props.workMode === 3) {
             return (
-
                 <div className='formEdit col-md-8'>
                     <div className='formEditRow'>
                         <div className='formEditName'>
                             <input className='col-md-6' id='formEditName' name=' formEditName' type="text"
                                    placeholder="Введите имя"
                                    defaultValue={this.props.name}
-                                   ref={this.setNewNameRef}/>
+                                   ref={(input) => this.newNameRef = input}/>
                         </div>
                         <span className="formEditSave" onClick={this.submitFormValidation}>
                             <FontAwesome
@@ -208,7 +172,6 @@ class ProductCard extends PureComponent {
                             name="ban"
                             style={{fontSize: '24px', color: '#0063ec', padding: '0 10px', cursor: 'pointer'}}/>
                         </span>
-
                     </div>
                     <div className='row formEditInformation'>
                         <div className='col-sm-4'>
@@ -216,7 +179,6 @@ class ProductCard extends PureComponent {
                                 <FontAwesome
                                     name="image "
                                     style={{fontSize: '85px', color: '#f0f3f7', padding: '50px'}}/>
-
                             </div>
                             <label htmlFor="formEditImage">
                                 <FontAwesome
@@ -226,14 +188,11 @@ class ProductCard extends PureComponent {
                                         color: '#f0f3f7',
                                         padding: '7px 10px',
                                         cursor: 'pointer',
-
                                     }}/>
                             </label>
                             <input id='formEditImage' name=' formEditImage' type="text" placeholder="Вставьте ссылку"
                                    defaultValue={this.props.img}
-                                   ref={this.setNewImgRef}/>
-
-
+                                   ref={(input) => this.newImgRef = input}/>
                         </div>
                         <div className='col-sm-8'>
                             <div className='row'>
@@ -242,13 +201,13 @@ class ProductCard extends PureComponent {
                                     <input id='formEditQuantity' name=' formEditQuantity' type="number"
                                            placeholder="Количество"
                                            defaultValue={this.props.quantity}
-                                           ref={this.setNewQuantityRef}/>
+                                           ref={(input) => this.newQuantityRef = input}/>
                                 </div>
                                 <div className='col-sm-4'>
                                     <label htmlFor="formEditPrice"><b>Цена:</b></label>
                                     <input id='formEditPrice' name=' formEditPrice' type="text" placeholder="Цена"
                                            defaultValue={this.props.price}
-                                           ref={this.setNewPriceRef}/>
+                                           ref={(input) => this.newPriceRef = input}/>
                                 </div>
                             </div>
                             <div className='row'>
@@ -257,14 +216,13 @@ class ProductCard extends PureComponent {
                                     <textarea name="formCreateDescription" id="formCreateDescription" cols="30"
                                               placeholder="Опишите продукт"
                                               rows="5" defaultValue={this.props.description}
-                                              ref={this.setNewDescriptionRef}>
+                                              ref={(input) => this.newDescriptionRef = input}>
                                 </textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             )
         }
     }
