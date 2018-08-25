@@ -93,13 +93,17 @@ class ProductsGrid extends PureComponent {
         let row = document.querySelectorAll('.rowWrapper');
 
         if (row) {
-            row.forEach(
-                (data) => {
-                    data.addEventListener("transitionend", this.detectTheEnd, false);
+            for (let i = 0; i < row.length; i++) {
+                row[i].addEventListener("transitionend", this.detectTheEnd, false);
 
-
-                }
-            )
+            }
+            // row.forEach(
+            //     (data) => {
+            //         data.addEventListener("transitionend", this.detectTheEnd, false);
+            //
+            //
+            //     }
+            // )
         }
 
 
